@@ -1,5 +1,5 @@
 <?php
-$con=mysqli_connect("localhost","root","root",'teambhp_site');
+$con=mysqli_connect("localhost","root","mete4loW",'teambhp_site');
 
 $sql_imglist=mysqli_query($con,"SELECT file_managed.uri FROM `file_managed` , field_data_field_news_images
 WHERE field_data_field_news_images.field_news_images_fid = file_managed.`fid`
