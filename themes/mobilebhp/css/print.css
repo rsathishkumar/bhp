@@ -1,0 +1,288 @@
+/* $Id: print.css,v 1.2 2010/09/09 15:27:08 webchick Exp $ */
+
+/* ---------- General Layout ---------- */
+
+#sidebar-second {
+	display: none!important;
+}
+body,
+input,
+textarea,
+select {
+  color: #000;
+  background: none;
+}
+body.two-sidebars,
+body.sidebar-first,
+body.sidebar-second,
+body {
+  width: 640px;
+
+}
+#share p:last-child,
+.hang,
+#sidebar-first,
+#sidebar-second,
+.navigation,
+#toolbar,
+.tabs,
+.add-or-remove-shortcuts {
+  display: none;
+}
+.one-sidebar #content,
+.two-sidebars #content {
+  width: 100%;
+}
+#triptych-wrapper {
+  width: 960px;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+#triptych-first, #triptych-middle, #triptych-last {
+  width: 250px;
+}
+
+/* ---------- Node Pages ---------- */
+
+#comments .title,
+#comments form,
+.comment_forbidden {
+  display: none;
+}
+
+
+body.page-node .fleft {
+	float: none;
+}
+
+body.page-node #header h1 a {
+	display: block;
+}
+body.page-node .two-sidebars #content {
+	width: auto;
+}
+
+
+body.page-node .two-sidebars #content,
+body.page-node #leftColumn,
+body.page-node .two-sidebars #content,
+body.page-node #leftPage,
+body.page-node .pageWithSlide
+ {
+	
+	width: auto;
+	float: none;
+}
+
+body.page-node .topLink,
+body.page-node .quicklinks,
+body.page-node #navigation,
+body.page-node #cse-search-box,
+body.page-node object,
+body.page-node .tag,
+body.page-node .shareCTA,
+body.page-node #sidebar-second,
+body.page-node #sidebar-first,
+body.page-node .tab,
+body.page-node .descripptionFlow a.next,
+body.page-node .articleNavi, 
+body.page-node .InnerPagination,
+body.page-node .article h1,
+body.page-node .w160,
+body.page-node .w100,
+body.page-node .w480,
+body.page-node #footnote,
+body.page-node .marT50,
+body.page-node .gallery_thumb,
+body.page-node .relatedNews,
+body.page-node .discussBtn,
+body.page-node .compareBox,
+body.page-node .compareBox,
+body.page-node a.zoomIt,
+body.page-node .logoTeam,
+.showLess, .btnRight, #altrnativecars, .reviewAlt,
+#goToNextPage, .btnLeft, #knowMore,
+.variantFilter,
+.node-type-price .w225,
+.node-type-gallery-images .w225,
+.emiCalcHolder,
+.buckle
+ {
+	display: none;
+} 
+body.page-node .printlogo {
+	display: block;
+}
+body.page-node #container  {
+	margin-bottom: 0;
+}
+
+body.page-node .descripptionFlow .desc,
+body.page-node .tab_container h1
+ {
+	display: block;
+}
+
+body.page-node #container,
+body.page-node .bgHolder {
+	padding: 0;
+	background: none;
+}
+
+body.page-node .marB10 {
+	margin-bottom: 0;
+}
+body.page-node .tab_container {
+	padding-bottom: 0;
+	border: none;
+}
+body.page-node .descripptionFlow .desc {
+	margin-bottom: 10px;
+	display: block !important;
+}
+#sidebar-second {
+	display: none !important;
+}
+
+body.page-node .footer {
+	display: none;
+}
+body.page-node .cRight {
+	display: block !important;
+	color: #333;
+	padding:5px 20px;
+}
+
+body.page-node #footer {
+	background: none;
+	padding: 0;
+}
+body.page-node .marT40,
+body.page-node .marT20 {
+	margin: 0;
+}
+body.page-node .descripptionFlow .clearfix {
+	display: none;
+}
+body.page-node .w400 {
+	width: auto;
+	
+}
+body.page-node .marT10 {
+	margin: 0;
+}
+body.page-node .full_news {
+	margin-top: 15px;
+}
+
+body.page-node #header h1, body.page-node #header h1 a {
+	background: #000000!important;
+	padding: 5px 10px;
+}
+
+.carOverview {
+	padding: 0;
+	border: none;
+}
+.fright {
+	float: none;
+}
+.reviewbar, .reviewSummery  {
+	border: none;
+}
+.reviewSummery {
+	padding: 0;
+	padding-left: 10px;
+}
+#firstPage, #secondPage, #reviewContent {
+	display: block!important;
+}
+#firstPage, #secondPage {
+	margin-bottom: 10px;
+} 
+.reviewVitalInfo {
+	float: none;
+	margin-top: 10px;
+}
+.Overview {
+	padding-left: 10px;
+}
+.PhotoGallery {
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+.carSpeci {
+	margin-top: 10px;
+}
+body.node-type-specifications .article h1, 
+body.node-type-features .article h1,
+body.node-type-price .article h1,
+body.node-type-gallery-images .article h1,
+body.node-type-specifications .w480,
+body.node-type-features .w480,
+body.node-type-price .w480,
+body.node-type-gallery-images .w480
+ {
+	display: block!important;
+	margin-top: 10px;
+}
+body.node-type-specifications #footer .w480,
+body.node-type-features #footer .w480,
+body.node-type-price #footer .w480,
+body.node-type-gallery-images #footer .w480
+ {
+	display: none!important;
+} 
+body.page-node .reviewCompare,
+body.page-node .reviewCompare li {
+	display: none!important;	
+}
+.engineOption {
+	width: auto;
+}
+.PricingTable, h2.emi {
+	margin-top: 10px;
+} 
+.w650 {
+	width: auto;
+}
+.tableNote {
+	margin-bottom: 15px;
+}
+.photosView {
+	border: none;
+}
+
+.photosView .w225{
+	display: none;
+	}
+.jcarousel-skin-tango .jcarousel-item-horizontal {
+	margin-right: 20px;
+}
+.overallReli, .mostViewed h4, .OtherSections h4, .UserOnlineSidebar h4, .vitalInfo h4,
+.VitalList h3.launch, .VitalList h3.price, .VitalList h3.fuel, .upkeepCosts, .serviceQuality, .resaleValue {
+	padding-left: 0;
+}
+.VitalList li {
+	padding: 0;
+}
+.VitalList td.column, .VitalList td.price {
+	width: 150px;
+}
+.w460 {
+	width: auto;
+}
+.reviewVitalInfo {
+	width: 310px;
+}
+.VitalList table, .VitalList .priceTableInner, .VitalList .priceTable {
+	width: 270px;
+}
+.descripptionFlow li img,
+.descripptionFlow p img {
+	float: none!important;
+}
+.contact {
+	padding-right: 0;
+}

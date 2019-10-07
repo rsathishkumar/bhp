@@ -1,0 +1,77 @@
+<?php
+require_once 'teambhp_update_config.inc';
+require_once 'teambhp_update.inc';
+require_once 'teambhp_update.title.inc';
+require_once 'teambhp_update_config.inc';
+
+
+function teambhp_update_init () 
+  {
+ $con = mysqli_connect("localhost", "root", "root");
+ // mysql_select_db("teambhp_site", $con) or die("error in connection");
+  }
+
+// Node hooks
+function teambhp_update_form_node_form_alter(&$form, &$form_state, $form_id) {
+ teambhp_update_form_node_form_alter_variant_prices($form, $form_state, $form_id);
+}
+
+function teambhp_update_node_insert($node) 
+ {
+ $fid=$node->field_gallery_model['und'][0]['nid'];
+ 	if($node->type=='gallery_images')
+ 		{
+$sql_qryrrrr=mysqli_fetch_object(mysql_query("select title from node where nid=".$node->field_gallery_model['und'][0]['nid']));
+ $id = $node->nid;
+    
+    db_update('node')
+      ->fields(array(
+          'title' => $sql_qryrrrr->title))
+      ->condition('nid', $id)
+      ->execute();
+      db_update('node_revision')
+      ->fields(array(
+          'title' => $sql_qryrrrr->title))
+      ->condition('nid', $id)
+      ->execute();
+  //  unset($node->uri);
+//  pathauto_node_update_alias($node, 'insert');
+	}
+
+
+ }
+
+function teambhp_update_node_update($node) 
+ {
+ $fid=$node->field_gallery_model['und'][0]['nid'];
+ 	if($node->type=='gallery_images')
+ 		{
+ $sql_qryrrrr=mysql_fetch_object(mysql_query("select title from node where nid=".$node->field_gallery_model['und'][0]['nid']));
+
+$id = $node->nid;
+    
+    db_update('node')
+      ->fields(array(
+          'title' => $sql_qryrrrr->title))
+      ->condition('nid', $id)
+      ->execute();
+      
+      db_update('node_revision')
+      ->fields(array(
+          'title' => $sql_qryrrrr->title))
+      ->condition('nid', $id)
+      ->execute();
+  // pathauto_node_update_alias($node, 'update');
+	}
+	
+
+	
+ // teambhp_update_node_update_variant_prices($node);
+ }
+require_once drupal_get_path('module', 'pathauto') . '/pathauto.admin.inc';
+require_once drupal_get_path('module', 'pathauto') . '/pathauto.inc';
+require_once drupal_get_path('module', 'pathauto') . '/pathauto.module';
+require_once drupal_get_path('module', 'pathauto') . '/pathauto.pathauto.inc';
+require_once drupal_get_path('module', 'pathauto') . '/pathauto.tokens.inc';
+require_once drupal_get_path('module', 'pathauto') . '/pathauto.api.php';
+//drupal_add_js(drupal_get_path('module', 'pathauto') . '/pathauto.js');

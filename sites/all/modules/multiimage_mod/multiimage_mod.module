@@ -1,0 +1,63 @@
+<?php
+require_once 'multiimage_mod.inc';
+
+function multiimage_mod_init () {
+
+    drupal_add_js(drupal_get_path('module', 'multiimage_mod') . '/js/common.js');
+  /*$con = mysql_connect("localhost", "root", "");
+  mysql_select_db("d7.7", $con) or die("error in connection:d7.7");
+  $res = mysql_query("select distinct(title) from node where type='news_category' and status='1'");
+  $cat = "";
+  while($row=mysql_fetch_assoc($res))
+  {
+  	$cat .= $row['title'].", ";
+  }
+  $text = 'Select at least on of the following News Categories:<br />'.substr($cat, 0, -2);*/
+  drupal_add_js('jQuery(document).ready(function () { test(); });', 'inline');
+}
+
+// Node hooks
+function multiimage_mod_form_node_form_alter(&$form, &$form_state, $form_id) {
+  //multiimage_mod_form_node_form_alter_variant_prices($form, $form_state, $form_id);
+}
+
+function multiimage_mod_node_insert($node) {
+	//$name = 'multiimage_mod_node_insert_' . $node->type;
+	//if (function_exists($name)) {
+	//	call_user_func($name, $node);
+	//}
+  
+  //multiimage_mod_node_insert_variant_prices($node);
+}
+
+function multiimage_mod_node_update($node) {
+	/*$name = 'multiimage_mod_node_update_' . $node->type;
+	if (function_exists($name)) {
+		call_user_func($name, $node);
+	}
+  
+  multiimage_mod_node_update_variant_prices($node);*/
+}
+
+function multiimage_mod_menu() {
+  $items = array();
+ /* $items['price'] = array(
+      'type' => MENU_CALLBACK,
+      'page callback' => 'bhp_news_callback',
+      'access arguments' => array('access content'),
+      'file' => 'multiimage_mod.inc'); */
+ $items['session'] = array(
+      'type' => MENU_CALLBACK,
+      'page callback' => 'bhp_session_callback',
+      'access arguments' => array('access content'),
+      'file' => 'multiimage_mod.inc');
+      
+    /*  $items['news'] = array(
+      'type' => MENU_CALLBACK,
+      'access arguments' => array('access content'),
+      'page callback' => 'drupal_get_form',
+	  'page arguments' => array('bhp_mod_page_handler'),
+      ); */
+       
+  return $items;
+}

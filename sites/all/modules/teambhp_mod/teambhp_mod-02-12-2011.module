@@ -1,0 +1,77 @@
+<?php
+
+require_once 'teambhp_mod_config.inc';
+require_once 'teambhp_mod.inc';
+require_once 'teambhp_mod.variant.inc';
+
+function teambhp_mod_init () 
+{
+  drupal_add_css(drupal_get_path('module', 'teambhp_mod') . '/css/teambhp_mod.css');
+  drupal_add_js(drupal_get_path('module', 'teambhp_mod') . '/js/teambhp_mod.js');
+  drupal_add_js(drupal_get_path('module', 'multiimage_mod') . '/js/common.js');
+  drupal_add_js('test()');
+  $con = mysql_connect("localhost", "pplane_teambhp", "foucault84");
+  mysql_select_db("pplane_teambhp", $con) or die("error in connection");
+  $res = mysql_query("select distinct(title) from node where type='news_category' and status='1'");
+  $cat = "";
+  while($row=mysql_fetch_assoc($res))
+  {
+  	$cat .= $row['title'].", ";
+  }
+  $text = 'Select at least on of the following News Categories:<br />'.substr($cat, 0, -2);
+  drupal_add_js('jQuery(document).ready(function () { /*jQuery("form#gallery-images-node-form").find("label:contains(\'Alternate text\')").each(function(i){ jQuery(this).text(\'Image Sequence\'); jQuery(this).closest("div.form-item").find("div.description").text("Image sequence used to display images on overview page"); });*/ jQuery("#edit-field-spec-nr-engine-type-und-0-nid").live("focusout", function(){ var eId = jQuery(this).val(); var start = eId.indexOf("[")+5; var end = eId.indexOf("]")-(eId.indexOf("[")+5); jQuery.ajax({ type: "POST", url: "/themes/bhp/getTransmission.php", data: "eId="+eId.substr(start, end), success: function(data){	if(data!="") { jQuery("#edit-field-spec-engine-transmission-und-0-value").val(data); jQuery("#edit-field-spec-engine-transmission-und-0-value").attr("readonly", "readonly"); jQuery("div.form-item-field-spec-engine-transmission-und-0-value").find("div.description").html("Transmission fetched from selected <strong>Engine</strong>"); } else {  jQuery("#edit-field-spec-engine-transmission-und-0-value").val(""); jQuery("#edit-field-spec-engine-transmission-und-0-value").removeAttr("readonly"); jQuery("div.form-item-field-spec-engine-transmission-und-0-value").find("div.description").html("example <strong>6-speed Manual</strong>"); } } }); }); jQuery("#edit-field-gallery-model-und-0-nid").live("change", function(){ jQuery("form#gallery-images-node-form").find("#edit-title").val(jQuery("#autocomplete ul li.selected").text()); }); jQuery("#edit-field-nr-make-und-0-nid").live("change", function(){ jQuery("form#model-node-form").find("#edit-title").val(jQuery("#autocomplete ul li.selected").text()+" "); }); jQuery("#edit-field-spec-nr-engine-type-und-0-nid").live("change", function(){ var modelText = jQuery("#autocomplete ul li.selected").text(); jQuery("form#specifications-node-form").find("#edit-title").val(modelText.substr(2, modelText.indexOf("]")-2)); }); jQuery("#edit-field-features-nr-variant-und-0-nid").live("change", function(){ var modelText = jQuery("#autocomplete ul li.selected").text(); jQuery("form#features-node-form").find("#edit-title").val(modelText.substr(2, modelText.indexOf(" -")-3)); }); jQuery("#edit-field-price-nr-variant-und-0-nid").live("change", function(){ var modelText = jQuery("#autocomplete ul li.selected").text(); jQuery("form#price-node-form").find("#edit-title").val(modelText.substr(2, modelText.indexOf(" -")-3)); }); jQuery("form#make-node-form").find("#edit-title").blur(function(){ var xhr; if(xhr) { xhr.abort(); } var make = jQuery(this).val(); xhr = jQuery.ajax({type: "POST",async: false, url: "/themes/bhp/includes/checkMake.php",data: "make="+make,success: function(data){ if(data==1){ if(jQuery("form#make-node-form").find("#duplicateMake").length==0) { jQuery("form#make-node-form").find("#edit-title").after("<span id=\"duplicateMake\" class=\"error\">&nbsp;&nbsp;Duplicate Entry</span>"); jQuery("form#make-node-form").attr("onSubmit", "alert(\"Duplicate Manufacturer\'s Name\"); return false;"); } } else { jQuery("form#make-node-form").find("#duplicateMake").remove(); jQuery("form#make-node-form").removeAttr("onSubmit"); } }}); }); /*jQuery("#edit-field-forum-model-und-0-nid").live("change", function(){ var modelText = jQuery("#autocomplete ul li.selected").text(); jQuery("form#forum-reviews-node-form").find("#edit-title").val(jQuery.trim(modelText.substr(modelText.indexOf(" - ")+4))); }); if(jQuery("#edit-field-news-tags-und").length>0){ jQuery("#edit-field-news-tags-und").closest(".form-item").find(".description").html("Use at least ONE of these tags: '.substr($cat, 0, -2).'. Use commas to separate each tag."); }*/ if(jQuery("#news-category-node-form").length>0){ jQuery("#news-category-node-form").find("#edit-title").closest(".form-item").append("<div class=\"description\">'.$text.'</div>"); } });', 'inline');
+}
+
+// Node hooks
+function teambhp_mod_form_node_form_alter(&$form, &$form_state, $form_id) {
+  teambhp_mod_form_node_form_alter_variant_prices($form, $form_state, $form_id);
+}
+
+function teambhp_mod_node_insert($node) {
+	$name = 'teambhp_mod_node_insert_' . $node->type;
+	if (function_exists($name)) {
+		call_user_func($name, $node);
+	}
+  
+  teambhp_mod_node_insert_variant_prices($node);
+}
+
+function teambhp_mod_node_update($node) {
+	$name = 'teambhp_mod_node_update_' . $node->type;
+	if (function_exists($name)) {
+		call_user_func($name, $node);
+	}
+  
+  teambhp_mod_node_update_variant_prices($node);
+}
+
+function teambhp_mod_menu() {
+ $items = array();
+  
+ $items['bhp/news/callback'] = array(
+      'type' => MENU_CALLBACK,
+      'page callback' => 'bhp_news_list_callback',
+      'access arguments' => array('access content'),
+      'file' => 'teambhp_mod.inc'); 
+  
+ $items['price'] = array(
+      'type' => MENU_CALLBACK,
+      'page callback' => 'bhp_news_callback',
+      'access arguments' => array('access content'),
+      'file' => 'teambhp_mod.inc');
+      
+ $items['session'] = array(
+      'type' => MENU_CALLBACK,
+      'page callback' => 'bhp_session_callback',
+      'access arguments' => array('access content'),
+      'file' => 'teambhp_mod.inc');
+      
+ $items['news'] = array(
+      'type' => MENU_CALLBACK,
+      'access arguments' => array('access content'),
+      'page callback' => 'drupal_get_form',
+	  'page arguments' => array('bhp_mod_page_handler'),
+      );
+       
+  return $items;
+}

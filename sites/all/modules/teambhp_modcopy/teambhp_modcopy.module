@@ -1,0 +1,32 @@
+<?php
+require_once 'teambhp_modcopy_config.inc';
+require_once 'teambhp_modcopy.inc';
+require_once 'teambhp_modcopy.features.inc';
+//require_once 'teambhp_mod_features.inc';
+
+function teambhp_modcopy_init () {
+  $con = mysqli_connect("localhost", "root", "root");
+//  mysql_select_db("teambhp_site", $con) or die("error in connection");
+ }
+
+// Node hooks
+function teambhp_modcopy_form_node_form_alter(&$form, &$form_state, $form_id) {
+  teambhp_modcopy_form_node_form_alter_features($form, $form_state, $form_id);
+}
+function teambhp_modcopy_node_insert($node) {
+	$name = 'teambhp_modcopy_node_insert_' . $node->type;
+	if (function_exists($name)) {
+		call_user_func($name, $node);
+	}
+  teambhp_modcopy_node_insert_features($node);
+}
+
+function teambhp_modcopy_node_update($node) {
+	$name = 'teambhp_modcopy_node_update_' . $node->type;
+	if (function_exists($name)) {
+		call_user_func($name, $node);
+	}
+ //  teambhp_modcopy_node_update_node_features($node);
+}
+
+

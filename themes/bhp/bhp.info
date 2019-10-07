@@ -1,0 +1,65 @@
+; $Id: bhp.info,v 1.5 2010/11/07 00:27:20 dries Exp $
+
+name = Team BHP
+description = A flexible, recolorable theme with many regions.
+package = Core
+version = VERSION
+core = 7.x
+
+scripts[] = js/jquery-1.5.1.js
+scripts[] = js/dd.js
+scripts[] = js/pp.js
+scripts[] = js/formValidation.js
+scripts[] = js/jquery.jcarousel.min.js
+scripts[] = js/jquery.cookie.js
+scripts[] = js/jquery.corner.js
+scripts[] = js/jquery.ui.core.js
+scripts[] = js/jquery.ui.widget.js
+scripts[] = js/jquery.lightbox.js
+scripts[] = js/jquery.ui.accordion.js
+scripts[] = js/jquery.ui.mouse.js
+scripts[] = js/jquery.ui.slider.js
+scripts[] = js/rounded.js
+scripts[] = js/selectivizr.js
+scripts[] = js/custom-form-elements.js
+;scripts[] = js/prototype.js
+;scripts[] = js/scriptaculous.js
+;scripts[] = js/effects.js
+;scripts[] = js/lightbox.js
+
+stylesheets[all][] = css/layout.css
+stylesheets[all][] = css/style.css
+stylesheets[all][] = css/colors.css
+stylesheets[print][] = css/print.css
+stylesheets[all][] = css/home.css
+stylesheets[all][] = css/rupees.css
+
+regions[header] = Header
+regions[help] = Help
+regions[page_top] = Page top
+regions[page_bottom] = Page bottom
+regions[highlighted] = Highlighted
+
+regions[featured] = Featured
+regions[content] = Content
+regions[sidebar_first] = Sidebar first
+regions[sidebar_second] = Sidebar second
+
+regions[triptych_first] = Triptych first
+regions[triptych_middle] = Triptych middle
+regions[triptych_last] = Triptych last
+
+regions[footer_firstcolumn] = Footer first column
+regions[footer_secondcolumn] = Footer second column
+regions[footer_thirdcolumn] = Footer third column
+regions[footer_fourthcolumn] = Footer fourth column
+regions[footer] = Footer
+
+settings[shortcut_module_link] = 0
+
+
+; Information added by drupal.org packaging script on 2011-01-05
+version = "7.0"
+project = "drupal"
+datestamp = "1294208756"
+

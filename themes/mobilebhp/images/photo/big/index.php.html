@@ -1,0 +1,908 @@
+<!DOCTYPE HTML>
+<html><head>
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>TEAM BHP :: Global Elements</title>
+	
+	<script type="text/javascript" src="index.php_files/jquery-1.js"></script>
+<script type="text/javascript" src="index.php_files/formValidation.js"></script>
+<link rel="stylesheet" href="index.php_files/main.css" type="text/css">
+<link rel="stylesheet" href="index.php_files/lightbox.css" type="text/css">
+
+<!--[if lt IE 9]>
+		<script type="text/javascript" src="/js/selectivizr.js"></script>
+<![endif]--> 
+
+<script type="text/javascript">		    
+	$(function(){
+		
+		//$("#sidePage").css("display","none");
+		
+		$(".quicklinks").click(function(){
+			if($("#sidePage").css("display")=="none"){
+				$("#sidePage").fadeIn("slow");
+				$(this).html("&lt; Close Links");
+				return false;
+			}else {
+				$("#sidePage").fadeOut("slow");
+				$(this).html("Quick Links &gt;");
+				return false;
+			}
+		});
+		
+		$(".Email .email").click(function(){
+			if ($(this).siblings(".shareForm").css("display")=="none") {
+				$(this).closest(".Email").addClass("EmailActive");
+				$(this).siblings(".shareForm").fadeIn();
+				return false;
+			}else{
+				$(this).closest(".Email").removeClass("EmailActive");
+				$(this).siblings(".shareForm").fadeOut();
+				return false;
+			}
+		});
+		
+		$(".Email .closeShareForm").click(function(){
+			$(this).closest(".Email").removeClass("EmailActive");
+			$(this).closest(".shareForm").fadeOut();
+			return false;
+		});
+		
+	});
+</script>		
+
+<!--[if lte IE 6]>
+	<link rel="stylesheet" href="/css/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->	<link rel="stylesheet" type="text/css" href="index.php_files/home.css">
+	
+	<script type="text/javascript">		
+		
+		var count=0;
+		    
+		$(function(){
+			
+			$i=0;
+			$n=0;
+			
+			var myInt = setInterval(function(){
+			  count ++;
+			  if(count==5){
+				$j = $i+1;
+					 count = 0;
+					 
+					 if($j<$("a.banner").length)
+					 	{
+					 		
+					 		
+							$("a.banner").eq($i).fadeOut(500, function(){
+								$("a.banner").fadeOut(500);
+								$("a.banner").eq($j).fadeIn(500);
+			   					$(".bannerTabs ul li").removeClass("active");
+				   				$(".bannerTabs ul li").eq($j).addClass("active");
+				   				$("#bannerTitle").text($(this).next().attr("title"));
+				   			});
+				   			
+					 		$i = $i+1;
+					 	}
+					 else
+					 	{
+					 		$i=0;
+					 		$("a.banner").eq($("a.banner").length-1).fadeOut(500, function(){
+					 			$("a.banner").fadeOut(500);
+			   					$("a.banner").eq(0).fadeIn(500);
+			   					$(".bannerTabs ul li").removeClass("active");
+				   				$(".bannerTabs ul li").eq(0).addClass("active");
+				   				$("#bannerTitle").text($(".homeBanner1").attr("title"));
+				   			});
+					 	}
+					 }
+			},1000);
+			
+			$(".bannerTabs ul li").click(function(){
+				$listItem = $('ul.highlighter li').index(this);
+				$(".bannerTabs ul li").removeClass("active");
+				$(this).addClass("active");
+				$("div.banner").fadeOut(600);
+				$($(this).attr("rel")).fadeIn(600);
+				$bannerTitle = $(this).attr("rel");
+				$("#bannerTitle").text($($bannerTitle).attr("title"));
+				count=0;
+				$i=$listItem;
+				return false;
+			});
+			
+			var vintageInt = setInterval(function(){
+			  count ++;
+			  if(count==5){
+			  	$j = $n+1;
+					 count = 0;
+					 
+					 if($j<$("#vintageCars img").length)
+					 	{	
+					 		$("#vintageCars img").eq($n).fadeOut(500, function(){
+					 			$("#vintageCars img").fadeOut(500);
+								$("#vintageCars img").eq($j).fadeIn(500);
+								$(".vintageBtn ul li").removeClass("active");
+				   				$(".vintageBtn ul li").eq($j).addClass("active");
+				   				$(".vintageCars h4").text($(this).next().attr("alt"));
+				   				
+			   				});
+				   			
+					 		$n = $n+1;
+					 	}
+					 else
+					 	{
+					 		$n=0;
+					 		$("#vintageCars img").eq($("#vintageCars img").length-1).fadeOut(500, function(){
+					 			$("#vintageCars img").fadeOut(500);
+					 			$("#vintageCars img").eq(0).fadeIn(500);
+					 			$(".vintageBtn ul li").removeClass("active");
+				   				$(".vintageBtn ul li").eq(0).addClass("active");
+				   				$(".vintageCars h4").text($("#vintage-1").attr("alt"))
+			   				});
+					 	}
+					 }
+			},10000);
+			
+			$(".vintageBtn ul li").click(function(){
+				$listItem = $('.vintageBtn ul li').index(this);
+				$(".vintageBtn ul li").removeClass("active");
+				$(this).addClass("active");
+				$("#vintageCars img").fadeOut(600);
+				$($(this).attr("rel")).fadeIn(600);
+				$bannerTitle = $(this).attr("rel");
+				$(".vintageCars h4").text($($bannerTitle).attr("alt"));
+				count=0;
+				$n=$listItem;
+				return false;
+			});
+			
+			$("#nextBanner").click(function(){
+				if ($i<3) {
+					$j=$i+2;
+					$m=$i+1;
+				}else {
+					$j=1;
+					$m=0;
+				}
+				$(".bannerTabs ul li").removeClass("active");
+				$("ul.highlighter li").eq($m).addClass("active");
+				$("div.banner").fadeOut(500);
+				$("#story-"+$j).fadeIn(500);
+				$("#bannerTitle").text($("#story-"+$j).attr("title"));
+				count=0;
+				$i=$j-1;
+				return false;
+			});
+			
+			$(".homeTab .tab a").click(function(){
+				if ($($(this).attr("href")).css("display")=="none") {
+					$(".homeTab .tab a").removeClass("active");
+					$(this).addClass("active");
+					$(".homeTab .tabContent").css("display","none");
+					$($(this).attr("href")).fadeIn(800);
+				}
+				return false;
+			});
+			
+		});
+	</script>
+	
+</head><body class="homePage clearfix">####home
+	<div class="bgHolder clearfix">
+		<div class="clearfix page" id="page">
+	
+			<div id="leftPage" class="fleft">
+				
+				<script type="text/javascript">
+
+	$(function(){
+		$("#search_input").bind("focus click", function(){
+		 	if($(this).val()=="Search")
+		 		{
+		 			$(this).val('');
+		 		}
+		 });
+		 
+		 $("#search_input").bind("blur", function(){
+		 	if(($(this).val()=="Search") || ($(this).val()==''))
+		 		{
+		 			$(this).val('Search');
+		 		}
+		 });
+		 
+		 $("#setHomePage")click(function(){
+		 	alert("here");
+		 });
+	});
+</script>
+
+<div id="header" class="clearfix">
+	<div class="fleft w400">
+		<h1 class="marL10 marT10">
+			<a href="http://192.168.0.1:8091/index.php" title="Go to Home page">
+				<img src="index.php_files/team-bhp-logo.png" alt="TEAM-BHP-LOGO">	
+			</a>
+		</h1>
+	</div><!-- w400 -->
+	
+	<div class="fright aln_right w400 clearfix">
+		<div class="topLink marT5 marB70">
+			<a id="setHomePage" href="#" title="Make Team-BHP your Home Page">Make Team-BHP your Home Page</a>&nbsp;&nbsp;|
+			<a href="http://192.168.0.1:8091/about-us.php" title="About Us">About Us</a>&nbsp;&nbsp;|
+			<a href="#" title="Contact Us">Contact Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="http://192.168.0.1:8091/site-map.php" title="Sitemap">Sitemap</a>
+		</div>	<!-- tab Link -->
+
+		<a href="#" class="marT5 quicklinks">
+			Quick Links &gt;
+		</a>
+		<div class="marT10 clearfix">
+			<form id="cse-search-box" action="search.php">
+			    <input value="partner-pub-8422315737402856:zcmboq-gw8i" name="cx" type="hidden">
+			    <input value="FORID:9" name="cof" type="hidden">
+			    <input value="ISO-8859-1" name="ie" type="hidden">
+			    <input id="search_input" class="gloablSearch roundAll3" value="Search" name="q" type="text">
+			    <input id="search_button" class="gloablSearchBtn" value="" name="sa" type="submit">
+			</form>
+		</div>
+	</div><!-- w400-->
+</div> <!--  header -->					
+				<div class="clearfix" id="navigation">
+	<ul class="clearfix">
+		<li class="home"><a href="http://192.168.0.1:8091/index.php" title="Go to Home page"><span>&nbsp;</span></a></li>
+		<li><a href="/forum/" target="_blank" title="Store"><span>Forum</span></a></li>		
+		<li><a href="http://classifieds.team-bhp.com/" target="_blank" title="Classifieds"><span>Classifieds</span></a></li>
+		<li><a href="http://192.168.0.1:8091/news.php" title="News"><span>News</span></a></li>		
+		<li><a href="http://192.168.0.1:8091/reviews.php" title="Reviews"><span>Reviews</span></a></li>		
+		<li><a href="#" title="Photos"><span>Photos</span></a></li>		
+		<li><a href="http://192.168.0.1:8091/advice.php" title="Advice"><span>Advice</span></a></li>		
+		<li><a href="#" title="Tech Stuff"><span>Tech Stuff</span></a></li>														
+		<li><a href="http://192.168.0.1:8091/hot-threads.php" title="Hot Threads"><span>Hot Threads</span></a></li>		
+		<li class="last"><a href="#" title="Store"><span>Store</span></a></li>														
+	</ul>	
+</div><!-- navigation -->				
+				
+				<div id="container" class="roundAll3 clearfix">
+					<div class="marB10 clearfix">
+						<div id="leftColumn" class="fleft">
+							
+							<div id="highlights" class="homeBanner">
+								<div class="BLR5 bannerTabs clearfix">
+									<ul class="highlighter clearfix">
+										<li class="" rel="#story-1">&nbsp;</li>  
+										<li class="active" rel="#story-2">&nbsp;</li>   
+										<li rel="#story-3">&nbsp;</li>  
+										<li rel="#story-4">&nbsp;</li>  
+									</ul>
+									<a id="nextBanner" class="fright" href="#">&nbsp;</a>
+									<div id="bannerTitle" class="fright">The Mercedes CLS AMG 2</div>
+								</div>
+								<a href="#" class="roundAll5 banner homeBanner1" title="The Mercedes CLS AMG 1" id="story-1" style="display: none;"></a>
+								<a href="#" class="roundAll5 banner homeBanner2" title="The Mercedes CLS AMG 2" id="story-2" style=""></a>
+								<a href="#" class="roundAll5 banner homeBanner3" title="The Mercedes CLS AMG 3" id="story-3" style="display: none;"></a>
+								<a href="#" class="roundAll5 banner homeBanner4" title="The Mercedes CLS AMG 4" id="story-4" style="display: none;"></a>
+							</div><!--homePageBanner-->							
+							
+							<div class="homeTab">
+								<ul class="tab TLR5 clearfix">
+									<li class="titleLi">News</li>
+									<li class="secondLi"><a title="Indian" class="TLR5 active" href="#tab1">Indian</a></li>
+									<li><a title="International" class="TLR5" href="#tab2">International</a></li>
+									<li><a title="Motor Sports" class="TLR5" href="#tab3">Motor Sports</a></li>
+								</ul>
+								<div class="tab_container BLR5">
+									<div id="tab1" class="tabContent">
+										<ul class="homeCarList clearfix">
+											<li>
+												<a class="clearfix" href="http://192.168.0.1:8091/news-details.php">
+													<img src="index.php_files/car12.jpg" alt="" height="55" width="70">
+													Tata apponts Forster as Global CEO
+												</a>	
+											</li>
+											<li>
+												<a class="clearfix" href="http://192.168.0.1:8091/news-details.php">
+													<img src="index.php_files/car13.jpg" alt="" height="55" width="70">
+													Ford Figo prices to be announced tomorrow
+												</a>	
+											</li>
+											<li>
+												<a class="clearfix" href="http://192.168.0.1:8091/news-details.php">
+													<img src="index.php_files/car14.jpg" alt="" height="55" width="70">
+													Mahindra Thar: Is it ever coming?
+												</a>	
+											</li>
+											<li>
+												<a class="clearfix" href="http://192.168.0.1:8091/news-details.php">
+													<img src="index.php_files/car15.jpg" alt="" height="55" width="70">
+													Maruti launched Eeco @ Rs.2.7 Lakh
+												</a>	
+											</li>
+											<li>
+												<a class="clearfix" href="http://192.168.0.1:8091/news-details.php">
+													<img src="index.php_files/car16.jpg" alt="" height="55" width="70">
+													Hyundai announces Pune plant
+												</a>	
+											</li>
+											<li>
+												<a class="clearfix" href="http://192.168.0.1:8091/news-details.php">
+													<img src="index.php_files/car17.jpg" alt="" height="55" width="70">
+													HM Ambassadorto be discontinued
+												</a>	
+											</li>
+										</ul><!-- homeCarList -->
+										<div class="marT10 marR12 clearfix">
+											<a href="http://192.168.0.1:8091/news.php?t=1" class="fright btnRight">
+												<span>View All News</span>
+											</a>
+										</div>
+									</div><!-- tabContent -->
+										
+									<div id="tab2" class="tabContent" style="display: none;">
+										<ul class="homeCarList clearfix">
+											<li>
+												<a class="clearfix" href="http://192.168.0.1:8091/news-details.php">
+													<img src="index.php_files/car5.jpg" alt="" height="55" width="70">
+													Tata apponts Forster as Global CEO
+												</a>	
+											</li>
+											<li>
+												<a class="clearfix" href="http://192.168.0.1:8091/news-details.php">
+													<img src="index.php_files/car5.jpg" alt="" height="55" width="70">
+													Ford Figo prices to be announced tomorrow
+												</a>	
+											</li>
+											<li>
+												<a class="clearfix" href="http://192.168.0.1:8091/news-details.php">
+													<img src="index.php_files/car5.jpg" alt="" height="55" width="70">
+													Mahindra Thar: Is it ever coming?
+												</a>	
+											</li>
+											<li>
+												<a class="clearfix" href="http://192.168.0.1:8091/news-details.php">
+													<img src="index.php_files/car5.jpg" alt="" height="55" width="70">
+													Maruti launched Eeco @ Rs.2.7 Lakh
+												</a>	
+											</li>
+											<li>
+												<a class="clearfix" href="http://192.168.0.1:8091/news-details.php">
+													<img src="index.php_files/car5.jpg" alt="" height="55" width="70">
+													Hyundai announces Pune plant
+												</a>	
+											</li>
+											<li>
+												<a class="clearfix" href="http://192.168.0.1:8091/news-details.php">
+													<img src="index.php_files/car5.jpg" alt="" height="55" width="70">
+													HM Ambassadorto be discontinued
+												</a>	
+											</li>
+										</ul><!-- homeCarList -->
+										<div class="marT10 marR12 clearfix">
+											<a href="http://192.168.0.1:8091/news.php?t=2" class="fright btnRight">
+												<span>View All News</span>
+											</a>
+										</div>
+									</div><!-- tabContent -->
+										
+									<div id="tab3" class="tabContent" style="display: none;">
+										<ul class="homeCarList clearfix">
+											<li>
+												<a class="clearfix" href="http://192.168.0.1:8091/news-details.php">
+													<img src="index.php_files/car5.jpg" alt="" height="55" width="70">
+													Tata apponts Forster as Global CEO
+												</a>	
+											</li>
+											<li>
+												<a class="clearfix" href="http://192.168.0.1:8091/news-details.php">
+													<img src="index.php_files/car5.jpg" alt="" height="55" width="70">
+													Ford Figo prices to be announced tomorrow
+												</a>	
+											</li>
+											<li>
+												<a class="clearfix" href="http://192.168.0.1:8091/news-details.php">
+													<img src="index.php_files/car5.jpg" alt="" height="55" width="70">
+													Mahindra Thar: Is it ever coming?
+												</a>	
+											</li>
+											<li>
+												<a class="clearfix" href="http://192.168.0.1:8091/news-details.php">
+													<img src="index.php_files/car5.jpg" alt="" height="55" width="70">
+													Maruti launched Eeco @ Rs.2.7 Lakh
+												</a>	
+											</li>
+											<li>
+												<a class="clearfix" href="http://192.168.0.1:8091/news-details.php">
+													<img src="index.php_files/car5.jpg" alt="" height="55" width="70">
+													Hyundai announces Pune plant
+												</a>	
+											</li>
+											<li>
+												<a class="clearfix" href="http://192.168.0.1:8091/news-details.php">
+													<img src="index.php_files/car5.jpg" alt="" height="55" width="70">
+													HM Ambassadorto be discontinued
+												</a>	
+											</li>
+										</ul><!-- homeCarList -->
+										<div class="marT10 marR12 clearfix">
+											<a href="http://192.168.0.1:8091/news.php?t=3" class="fright btnRight">
+												<span>View All News</span>
+											</a>
+										</div>
+									</div><!-- tabContent -->
+									
+								</div><!-- tab_container -->	
+							</div><!-- homeTab -->
+							
+							<div class="homeReview">
+								<h4 class="TLR5 clearfix">
+									<strong class="title">Car Reviews</strong>
+									<span class="options">
+										<select>
+											<option selected="selected">Select a Make</option>
+										</select>
+									</span>
+								</h4>
+								<div class="reviewContent BLR5">
+									<ul class="reviewList clearfix">
+										<li>
+											<a href="http://192.168.0.1:8091/overview.php">
+												<img src="index.php_files/car.jpg" alt="" height="130" width="175">
+												<b>&nbsp;</b>
+												<span>Tata Manza</span>
+											</a>
+										</li>
+										<li>
+											<a href="http://192.168.0.1:8091/overview.php">
+												<img src="index.php_files/car3.jpg" alt="" height="130" width="175">
+												<b>&nbsp;</b>
+												<span>Tata Manza</span>
+											</a>
+										</li>
+										<li>
+											<a href="http://192.168.0.1:8091/overview.php">
+												<img src="index.php_files/car4.jpg" alt="" height="130" width="175">
+												<b>&nbsp;</b>
+												<span>Tata Manza</span>
+											</a>
+										</li>
+										<li>
+											<a href="http://192.168.0.1:8091/overview.php">
+												<img src="index.php_files/car10.jpg" alt="" height="130" width="175">
+												<b>&nbsp;</b>
+												<span>Tata Manza</span>
+											</a>
+										</li>
+										<li>
+											<a href="http://192.168.0.1:8091/overview.php">
+												<img src="index.php_files/car5.jpg" alt="" height="130" width="175">
+												<b>&nbsp;</b>
+												<span>Tata Manza</span>
+											</a>
+										</li>
+										<li>
+											<a href="http://192.168.0.1:8091/overview.php">
+												<img src="index.php_files/car7.jpg" alt="" height="130" width="175">
+												<b>&nbsp;</b>
+												<span>Tata Manza</span>
+											</a>
+										</li>
+									</ul><!-- reviewList -->
+									<div class="marR12 clearfix">
+										<a href="#" class="fright btnRight">
+											<span>View All Car Reviews</span>
+										</a>
+									</div>
+								</div><!-- reviewContent -->
+							</div><!-- homeReview -->
+							
+						</div><!-- leftColumn -->
+						
+						<div id="sidebar" class="fright">
+							
+							<div class="searchClassi">
+								<h4 class="TLR5">Classifieds</h4>
+								<div class="searchContent BLR5">
+									<p>The Definitive Automotive Marketplace!</p>
+									<dl>
+										<dt>Select Make:</dt>
+										<dd>
+											<select>
+												<option selected="selected">Any make</option>
+											</select>
+										</dd>
+									</dl>
+									<dl>
+										<dt>Select Model:</dt>
+										<dd>
+											<select>
+												<option selected="selected">Any model</option>
+											</select>
+										</dd>
+									</dl>
+									<div class="clearfix">
+										<button type="submit" id="findClassifieds" name="findClassifieds" value="" class="find">&nbsp;</button>
+									</div>
+								</div><!-- searchContent -->
+							</div><!-- searchClassi -->
+							
+							<div class="homeThreads">
+								<h4 class="TLR5">Hot Threads</h4>
+								<div class="threadsList BLR5">
+									<ul>
+										<li><a href="#">Ford Figo - Test Drive &amp; Review</a></li>
+										<li><a href="#">Awesome report of the Nissan 370Z ...</a></li>
+										<li><a href="#">How to protect your car from theft.</a></li>
+										<li><a href="#">Auto Expo 2010 - Complete coverage</a></li>
+										<li><a href="#">My new Skoda Laura 1.8 TSI</a></li>
+										<li><a href="#">Travelogue : A trip to Taj Mahal</a></li>
+										<li><a href="#">Pics : Mumbai offroading session at ...</a></li>
+										<li><a href="#">Li'l things about cars that you find ...</a></li>
+										<li><a href="#">Vintage cars at the Statesman Conco...</a></li>
+										<li><a href="#">Ford Figo - Test Drive &amp; Review</a></li>
+										<li><a href="#">Awesome report of the Nissan 370Z...</a></li>
+										<li><a href="#">How to protect your car from theft</a></li>
+										<li><a href="#">Auto Expo 2010 - Complete coverage</a></li>
+										<li><a href="#">My new Skoda Laura 1.8 TSI</a></li>
+										<li><a href="#">Travelogue : A trip to Taj Mahal</a></li>
+									</ul>
+									<div class="marR15 clearfix">
+										<a href="http://192.168.0.1:8091/hot-threads.php" class="fright btnRight">
+											<span>More Hot Threads</span>
+										</a>
+									</div><!-- marR15 -->
+								</div><!-- threadsList -->
+							</div><!-- homeThreads -->
+						</div><!-- sidebar -->
+					</div><!-- clearfix -->
+					
+					<ul class="whatCar clearfix">
+						<li class="LTB5">What Car ?</li>
+						<li class="RTB5 clearfix">
+							<div class="fleft">
+								<h5><strong>Confused which car to buy ?</strong> Get expert Team BHP opinion.</h5>
+								<p>We will help you make a better choice. Participate in the forum discussions. </p>
+							</div>
+							<a href="#" class="fright marT10 btnRight">
+								<span>Go to the Forum</span>
+							</a>
+						</li>
+					</ul><!-- whatCar -->
+					
+					<div class="clearfix">
+						<div id="leftColumn" class="fleft">
+						
+							<div class="roundAll5 homeTravel">
+								<div class="fleft">
+									<h4>Travelogues</h4>
+									<p>Experiences, Route info &amp; Photos posed by Team BHP members</p>
+								</div>
+								<ul class="travelList roundAll5">
+									<li><a href="#">Planning a trip</a></li>
+									<li><a href="#">Road trip to Ladakh</a></li>
+									<li><a href="#">Strange sightings on the road</a></li>
+									<li><a href="#">Route query: Delhi to Rajasthan</a></li>
+									<li><a href="#">Bike trip: Mumbai to Goa</a></li>
+								</ul>
+							</div><!-- homeTravel -->
+							
+							<div class="clearfix">
+								
+								<div class="fleft w420">
+									
+									<div class="primBlock marB10">
+										<h4 class="TLR5"><span>Help Articles</span></h4>
+										<div class="BLR5 primBlockPad">
+											<ul class="marB10 normalList">
+												<li><a href="#">How to buy a *NEW* car in India.</a></li>
+												<li><a href="#">How to get the lowest EMI &amp; the best finance deal.</a></li>
+												<li><a href="#">How to protect your car from theft.</a></li>
+												<li><a href="#">How to get the maximum Fuel Efficiency.</a></li>
+												<li><a href="#">How to modify/ tune your car.</a></li>
+											</ul>
+											<div class="clearfix">
+												<a href="#" class="fright btnRight">
+													<span>View All</span>
+												</a>
+											</div>
+										</div><!-- primBlockPad -->
+									</div><!-- primBlock -->
+									
+									<div class="primBlock">
+										<h4 class="TLR5"><span>Tech Stuff</span></h4>
+										<div class="BLR5 primBlockPad">
+											<ul class="marB10 normalList">
+												<li><a href="#">Choosing the right set of tyres for your car.</a></li>
+												<li><a href="#">Suspension issues.</a></li>
+												<li><a href="#">Nano technology in cars.</a></li>
+												<li><a href="#">Torque &amp; power graph of Indan cars.</a></li>
+												<li><a href="#">Fuel gauge problems.</a></li>
+											</ul>
+											<div class="clearfix">
+												<a href="#" class="fright btnRight">
+													<span>View All</span>
+												</a>
+											</div>
+										</div><!-- primBlockPad -->
+									</div><!-- primBlock -->
+									
+								</div><!-- fleft -->
+								
+								<div class="fright w190">
+									<div class="marB10">
+										<img class="disBlock" src="index.php_files/teamBhpMerchandise.jpg" alt="TeamBHP Merchandise" height="260" width="190">
+									</div>
+									
+									<div class="roundAll5 safetyBlock">
+										<ul>
+											<li><a href="#">Avoid accidents</a></li>
+											<li><a href="#">Child safety in  cars</a></li>
+											<li><a href="#">Consectetur adip elit...</a></li>
+											<li><a href="#">Adipiscing elit. </a></li>
+											<li><a href="#">Consectetur adipiscing </a></li>
+										</ul>
+										<div class="padR10 clearfix">
+											<a title="" class="fright buttonSmall" href="#"><span>More </span></a>
+										</div>
+									</div><!-- safetyBlock -->
+								
+								</div><!-- fright -->
+							</div><!-- clearfix -->
+							
+						</div><!-- leftColumn -->
+						
+						<div id="sidebar" class="fright">
+							
+							<div class="marB10 homeThreads">
+								<h4 class="TLR5">Motorbikes</h4>
+								<div class="threadsList BLR5">
+									<ul>
+										<li><a href="#">Royal Enfield 500, 41.00 Km Review</a></li>
+										<li><a href="#">ABS for Bikes</a></li>
+										<li><a href="#">Retro Style Kwasaki W800 Launched</a></li>
+										<li><a href="#">Honda 250CC Bike for India</a></li>
+										<li><a href="#">How to buy a good helmet?</a></li>
+									</ul>
+									<div class="marR15 clearfix">
+										<a href="#" class="fright btnRight">
+											<span>More Hot Threads</span>
+										</a>
+									</div><!-- marR15 -->
+								</div><!-- threadsList -->
+							</div><!-- homeThreads -->
+							
+							<div class="roundAll5 vintageCars">
+								<h4>Super Cars</h4>
+								<div id="vintageCars" class="picBox">
+									<img id="vintage-1" src="index.php_files/4x4Car.jpg" alt="Super Cars" height="175" width="280">
+									<img id="vintage-2" style="display: none;" src="index.php_files/4x4Car.jpg" alt="4 x 4 Cars" height="175" width="280">
+									<img id="vintage-3" style="display: none;" src="index.php_files/vintageCars.jpg" alt="Vintage Cars" height="175" width="280">
+								</div>
+								<div class="vintageBtn clearfix">
+									<ul class="fright clearfix">
+										<li rel="#vintage-1" class="active">&nbsp;</li>
+										<li rel="#vintage-2">&nbsp;</li>
+										<li rel="#vintage-3">&nbsp;</li>
+									</ul>
+								</div>
+							</div>
+							
+							<div class="clearfis">
+								<img class="disBlock" src="index.php_files/kohlar.jpg" alt="Kohlar" height="260" width="300">
+							</div>
+						</div><!-- sidebar -->
+					</div><!-- clearfix -->
+					
+				</div><!-- container -->
+					
+				<div id="footer" class="clearfix">
+	<div class="clearfix">
+		<div class="fleft w480">
+			<h3>Team-BHP.com</h3>
+			<ul class="fleft">
+				<li><a href="http://classifieds.team-bhp.com/" target="_blank" title="Classifieds">Classifieds</a></li>
+				<li><a href="http://192.168.0.1:8091/directory.php" title="Directory">Directory</a></li>
+				<li><a href="/forum/" target="_blank" title="Forum">Forum</a></li>
+				<li><a href="http://192.168.0.1:8091/help.php" title="Help Articles">Help Articles</a></li>
+			</ul>
+			<ul class="fleft">
+				<li><a href="http://192.168.0.1:8091/hot-threads.php" title="Hot Threads">Hot Threads</a></li>
+				<li><a href="http://192.168.0.1:8091/news.php" title="News">News</a></li>
+				<li><a href="http://192.168.0.1:8091/photos.php" title="Photos">Photos</a></li>
+				<li><a href="http://192.168.0.1:8091/reviews.php" title="Reviews">Reviews</a></li>
+			</ul>
+	
+			<ul class="fleft">
+				<li><a href="http://192.168.0.1:8091/road-safety.php" title="Road Safety">Road Safety</a></li>
+				<li><a href="http://192.168.0.1:8091/store.php" title="Store">Store</a></li>
+				<li><a href="http://192.168.0.1:8091/tech-stuff.php" title="Tech Stuff">Tech Stuff</a></li>
+			</ul>
+		</div><!-- 480 -->
+		
+		<div class="fleft marL40 w160">
+			<h3>About Us</h3>
+			<ul class="fleft">
+				<li><a href="http://192.168.0.1:8091/about-us.php" title="Overview">Overview</a></li>
+				<li><a href="http://192.168.0.1:8091/the-team.php" title="The Team">The Team</a></li>
+				<li><a href="http://192.168.0.1:8091/key-features.php" title="Key Features">Key Features</a></li>
+				<li><a href="http://192.168.0.1:8091/philosophy.php" title="Philosophy">Philosophy</a></li>
+				<li><a href="http://192.168.0.1:8091/history.php" title="History">History</a></li>			
+			</ul>
+		</div>
+		<div class="fleft marL40 w100">
+			<h3>Contact Us</h3>
+			<ul class="fleft">
+				<li><a href="http://192.168.0.1:8091/feedback.php" title="Feedback">Feedback</a></li>
+				<li><a href="http://192.168.0.1:8091/press.php" title="Press">Press</a></li>
+				<li><a href="http://192.168.0.1:8091/advertising.php" title="Advertising">Advertising</a></li>
+			</ul>
+		</div><!-- w460 -->
+		
+	</div><!-- clearfix -->	
+	<div class="clearfix">&nbsp;</div>
+	<div class="clearfix marT20">
+		<div class="fleft cRight">Copyright 2010 - www.team-bhp.com</div>
+		<div class="fright marR40" id="footnote">
+			<a href="http://192.168.0.1:8091/sitemap.php" title="Site Map">Site Map</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+			<a href="http://192.168.0.1:8091/privacy-policy.php" title="Privacy Policy">Privacy Policy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+			<a href="http://192.168.0.1:8091/terms-conditions.php" title="Terms &amp; Conditions">Terms &amp; Conditions</a>
+		</div>
+	</div>
+
+	<div class="marT40">
+		<a href="#" title="BUCKLE UP. Seatbelts save lives.">
+			<img src="index.php_files/buckle-up-footer.png" alt="BUCKLE UP. Seatbelts save lives. - Ad Banner" height="57" width="792">
+		</a>
+	</div>
+	
+</div><!-- footer -->				
+			</div><!-- page -->
+			
+			<div id="sidePage" class="fright" style="display: none;">
+				<div class="marT50">
+					<a href="#" title="Promo Product">
+	<img src="index.php_files/promo-product.png" alt="Promo Product">
+</a>				</div><!-- promo Product -->
+				
+				<div class="marT40">
+					<div class="roundAll3 cta featured-ads">
+	<h3 class="padB10"><img src="index.php_files/feature-ads.png" alt="Feature Ads" height="18" width="157"></h3>
+	<div class="clearfix marB10">
+		<div class="fleft w110">
+			<a href="#" title="benz">
+				<img src="index.php_files/car.jpg" alt="car" height="67" width="108">
+			</a>
+		</div><!-- w110 -->
+		
+		<div class="fright w90">
+			<h4><a href="#" title="Benz-C-Class">Benz-C-Class</a></h4>
+			<p>Mumbai, 31.000 km</p>
+		</div><!-- w90 -->
+	</div><!-- clearfix -->
+	
+	<div class="clearfix marB10">
+		<div class="fleft w110">
+			<a href="#" title="benz">
+				<img src="index.php_files/car2.jpg" alt="car" height="67" width="108">
+			</a>
+		</div><!-- w110 -->
+		
+		<div class="fright w90">
+			<h4><a href="#" title="Maruti-Esteem">Maruti-Esteem</a></h4>
+			<p>Bangalore, 78.326 km</p>
+		</div><!-- w90 -->
+	</div><!-- clearfix -->
+	
+</div><!-- featured-ads -->				</div><!-- Featured-ads  CTA  -->
+				
+				<div class="marT10">
+					<div class="roundAll3 cta userOnline clearfix">
+	<h5 class="aln_center paB5">USERS ONLINE</h5>
+	
+	<ul class="userCount clearfix">
+		<li>0</li>
+		<li>4</li>
+		<li>3</li>
+		<li>5</li>
+		<li class="last">8</li>
+	</ul><!-- userCount -->
+	
+	<ul class="siteStats">
+		<li class="clearfix">
+			<span>Members:</span>
+			<strong>56929</strong>
+		</li>
+		<li class="clearfix">
+			<span>Threads:</span>
+			<strong>60780</strong>
+		</li>
+		<li class="clearfix last">
+			<span>Posts:</span>
+			<strong>1041293</strong>
+		</li>
+	</ul><!-- siteStats -->
+	
+</div>				</div><!-- User-online  CTA  -->
+				
+				<div class="marT10">
+					<div class="roundAll3 cta directory">
+	<h3>Directory</h3>
+	<div class="findInDIR padL15 padB5">Find the best Mechanics, Auto Shops, Paint Booths and more …</div>
+	
+	<div class="roundAll5 directoryList clearfix">
+		<ul>
+			<li><a href="#" title="Bangalore">Bangalore</a></li>
+			<li><a href="#" title="Mumbai">Mumbai</a></li>
+			<li><a href="#" title="Chennai">Chennai</a></li>
+			<li><a href="#" title="New Delhi">New Delhi</a></li>
+			<li><a href="#" title="Pune">Pune</a></li>
+			<li class="last"><a href="#" title="Other Cities">Other Cities</a></li>
+		</ul>
+	</div><!-- directoryList -->
+</div>				</div><!-- Directory  CTA  -->
+							
+				<div class="marT10">
+					<script type="text/javascript">
+	
+	$(function(){
+		$("#newsletterEmail").bind("focus click", function(){
+		 	if($(this).val()=="Your Email ID")
+		 		{
+		 			$(this).val('');
+		 		}
+		 });
+		 
+		 $("#newsletterEmail").bind("blur", function(){
+		 	if(($(this).val()=="Your Email ID") || ($(this).val()==''))
+		 		{
+		 			$(this).val('Your Email ID');
+		 		}
+		 });
+	});
+	
+</script>
+
+<div class="roundAll3 cta newsletter clearfix">
+	<div class="newsletterInner">
+		<h3>Newsletter</h3>
+		<div class="marB20">Get your daily dose of the<br> Indian Car Scene</div>
+		<form id="newsletter" name="newsletter" action="#" onsubmit="validate_newsletter(); return false;">
+			<div>
+				<input name="newsletterEmail" id="newsletterEmail" class="normal" value="Your Email ID" type="text">
+			</div>	
+			<p class="marT10">We promise we won’t share your<br> email id with a third part or spam<br> you.</p>
+			
+			<div class="aln_center clearfix marT20">
+				<div class="buttonHolder">
+					<button id="submit-newsletter" name="submit-newsletter" type="submit">
+						<img src="index.php_files/subcribebtn.png" alt="subrcibe Btn" height="28" width="106">
+					</button>
+				</div>
+			</div><!-- submit button -->
+		</form>
+		<div id="newsletterSuccessMsg" style="display: none;">Your details has been submited successfully</div>
+	</div><!-- newsletter inner -->
+	
+	<div class="clearfix marT20 padL10">
+		<h3>Stay Updated</h3>
+		<p>Stay up to date with the latest<br>
+			TEAM-BHP updates via Email,<br>
+			RSS, Twitter or Facebook.</p>
+		
+		<ul class="stayUpdated marT20 marB10 clearfix">
+			<li><a href="#" title="Twitter" class="twitter">&nbsp;</a></li>
+			<li><a href="#" title="Facebook" class="facebook">&nbsp;</a></li>
+			<li><a href="#" title="RSS" class="rss">&nbsp;</a></li>			
+		</ul>
+		
+	</div><!-- staty -->
+	
+	
+</div><!-- Travelogues CTA -->				</div><!-- Newsletter  CTA  -->
+			</div><!-- side page -->
+			
+		</div><!-- page holder-->		
+	</div><!-- bg holder -->
+<!-- body -->
+
+</body></html>

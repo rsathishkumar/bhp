@@ -1,0 +1,14 @@
+name = AMP Carousel
+core = 7.x
+description = AMP Carousel field formatter for images
+
+dependencies[] = amp
+dependencies[] = views
+
+files[] = amp_carousel_style_plugin.inc
+
+; Information added by Drupal.org packaging script on 2019-07-09
+version = "7.x-1.0-rc2+14-dev"
+core = "7.x"
+project = "amp_carousel"
+datestamp = "1562679790"

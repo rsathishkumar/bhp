@@ -1,0 +1,425 @@
+<?php 
+ //require_once(drupal_get_path('module', 'image/') . 'image.admin.inc');
+  module_load_include('inc', 'image', 'image.admin.inc');
+  module_load_include('php', 'image', 'image.api.php');
+  module_load_include('inc', 'image', 'image.effects.inc');
+  module_load_include('inc', 'image','image.field.inc');
+ 
+ module_load_include('module', 'image','image.module');
+ module_load_include('test', 'image','image.test');
+ module_load_include('info', 'image','image_module_test.info');
+ module_load_include('module', 'image','image_module_test.module');
+ 
+require_once 'create_imagecopy.image.inc';
+require_once 'create_imagecopy_config.inc';
+
+function create_imagecopy_init () {
+ $con = mysql_connect("localhost", "pplane_teambhp", "foucault84");
+  mysql_select_db("pplane_teambhp", $con) or die("error in connection");
+  }
+
+// Node hooks
+function create_imagecopy_form_node_form_alter(&$form, &$form_state, $form_id) {
+  create_imagecopy_form_node_form_alter_variant_prices($form, $form_state, $form_id);
+}
+
+function create_imagecopy_node_insert($node) 
+{
+if($node->type=='gallery_images')
+	{
+	if(count($node->field_gallery_exterior['und'])>0)
+		{
+		for($j=0;$j<=count($node->field_gallery_exterior);$j++)
+			{
+ $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_gallery_exterior['und'][$j]['fid']));
+ $filename=str_replace("public://","",$sql_img['uri']);
+ $image_uri = file_build_uri($filename);
+ echo image_style_url('compare_multiple_car', $image_uri);
+ echo image_style_url('large_review', $image_uri);
+ echo image_style_url('medium_large', $image_uri);
+ echo image_style_url('medium_medium', $image_uri);
+ echo image_style_url('thumb_compare_car', $image_uri);
+ echo image_style_url('thumb_review_detail', $image_uri);
+ echo image_style_url('medium_medium', $image_uri);
+ echo image_style_url('extra_large_for_review', $image_uri);
+ echo image_style_url('big_image', $image_uri);
+ 		    }
+ 	   }
+ 	  if(count($node->field_gallery_interior['und'])>0)
+		{
+		for($j=0;$j<=count($node->field_gallery_interior);$j++)
+			{
+ $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_gallery_interior['und'][$j]['fid']));
+ $filename=str_replace("public://","",$sql_img['uri']);
+ $image_uri = file_build_uri($filename);
+ echo image_style_url('compare_multiple_car', $image_uri);
+ echo image_style_url('large_review', $image_uri);
+ echo image_style_url('medium_large', $image_uri);
+ echo image_style_url('medium_medium', $image_uri);
+ echo image_style_url('thumb_compare_car', $image_uri);
+ echo image_style_url('thumb_review_detail', $image_uri);
+ echo image_style_url('medium_medium', $image_uri);
+ echo image_style_url('extra_large_for_review', $image_uri);
+ echo image_style_url('big_image', $image_uri);
+           }
+ 	   }
+ 	  if(count($node->field_gallery_engine['und'])>0)
+		{
+		for($j=0;$j<=count($node->field_gallery_engine);$j++)
+			{
+ $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_gallery_engine['und'][$j]['fid']));
+ $filename=str_replace("public://","",$sql_img['uri']);
+ $image_uri = file_build_uri($filename);
+ echo image_style_url('compare_multiple_car', $image_uri);
+ echo image_style_url('large_review', $image_uri);
+ echo image_style_url('medium_large', $image_uri);
+ echo image_style_url('medium_medium', $image_uri);
+ echo image_style_url('thumb_compare_car', $image_uri);
+ echo image_style_url('thumb_review_detail', $image_uri);
+ echo image_style_url('medium_medium', $image_uri);
+ echo image_style_url('extra_large_for_review', $image_uri);
+ echo image_style_url('big_image', $image_uri);
+           }
+ 	   }
+ 	  if(count($node->field_gallery_smaller['und'])>0)
+		{
+		for($j=0;$j<=count($node->field_gallery_smaller);$j++)
+			{
+ $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_gallery_smaller['und'][$j]['fid']));
+ $filename=str_replace("public://","",$sql_img['uri']);
+ $image_uri = file_build_uri($filename);
+ echo image_style_url('compare_multiple_car', $image_uri);
+ echo image_style_url('large_review', $image_uri);
+ echo image_style_url('medium_large', $image_uri);
+ echo image_style_url('medium_medium', $image_uri);
+ echo image_style_url('thumb_compare_car', $image_uri);
+ echo image_style_url('thumb_review_detail', $image_uri);
+ echo image_style_url('medium_medium', $image_uri);
+ echo image_style_url('extra_large_for_review', $image_uri);
+ echo image_style_url('big_image', $image_uri);
+           }
+ 	   }
+ 		
+ 	}
+ else if($node->type=='news')
+ 	{
+ 		if($node->field_news_media_type['und'][0]['value']=='Images')
+ 			{
+			for($j=0;$j<=count($node->field_news_images);$j++)
+				{
+	 $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_news_images['und'][$j]['fid']));
+	 $filename=str_replace("public://","",$sql_img['uri']);
+	 $image_uri = file_build_uri($filename);
+	// echo image_style_url('large_review', $image_uri);
+	 echo image_style_url('extra_large_for_review', $image_uri);
+	 echo image_style_url('medium_medium', $image_uri);
+	 echo image_style_url('big_image', $image_uri);
+	 
+				}
+			
+			}
+			else
+			{
+				if(count($node->field_news_list_image['und'])>0)
+					{
+				for($j=0;$j<=count($node->field_news_list_image);$j++)
+						{
+				$sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_news_list_image['und'][$j]['fid']));
+				$filename=str_replace("public://","",$sql_img['uri']);
+	 			$image_uri = file_build_uri($filename);
+				echo image_style_url('medium_medium', $image_uri);		
+				echo image_style_url('big_image', $image_uri);
+						}
+					}
+			
+			}
+ 	}
+  else if($node->type=='hot_threads')
+ 	{
+	 $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_ht_image['und'][0]['fid']));
+	 $filename=str_replace("public://","",$sql_img['uri']);
+	 $image_uri = file_build_uri($filename);
+	 echo image_style_url('thumb_review_detail', $image_uri);
+	 echo image_style_url('medium_medium', $image_uri);
+	}
+  else if($node->type=='forum_reviews')
+ 	{
+	 $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_forum_review_image['und'][0]['fid']));
+	 $filename=str_replace("public://","",$sql_img['uri']);
+	 $image_uri = file_build_uri($filename);
+	 echo image_style_url('thumb_review_detail', $image_uri);
+	 echo image_style_url('medium_medium', $image_uri);
+	}
+ else if($node->type=='advice')
+ 	{
+ 	if($node->field_advice_media_type['und'][0]['value']=='Image')
+ 			{
+	 $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_advice_images['und'][0]['fid']));
+	 $filename=str_replace("public://","",$sql_img['uri']);
+	 $image_uri = file_build_uri($filename);
+	 echo image_style_url('thumb_review_detail', $image_uri);
+	 echo image_style_url('medium_medium', $image_uri);
+	 echo image_style_url('large_review', $image_uri);
+	 echo image_style_url('extra_large_for_review', $image_uri);
+	 echo image_style_url('big_image', $image_uri);
+				}
+			else
+			{
+				if(count($node->field_advice_optional_image['und'])>0)
+					{
+				$sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_advice_optional_image['und'][0]['fid']));
+				$filename=str_replace("public://","",$sql_img['uri']);
+	 			$image_uri = file_build_uri($filename);
+				echo image_style_url('medium_medium', $image_uri);	
+				echo image_style_url('thumb_review_detail', $image_uri);	
+				echo image_style_url('large_review', $image_uri);
+				echo image_style_url('extra_large_for_review', $image_uri);
+				echo image_style_url('big_image', $image_uri);
+					}
+			
+			}
+	}
+	else if($node->type=='tech_stuff)')
+ 	{
+ 	 $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_tech_stuff_image['und'][0]['fid']));
+	 $filename=str_replace("public://","",$sql_img['uri']);
+	 $image_uri = file_build_uri($filename);
+	 echo image_style_url('thumb_review_detail', $image_uri);
+	 echo image_style_url('medium_medium', $image_uri);
+	 echo image_style_url('extra_large_for_review', $image_uri);
+	 echo image_style_url('big_image', $image_uri);
+	}
+	else if($node->type=='model)')
+ 	{
+ 	 $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_model_dashboard['und'][0]['fid']));
+	 $filename=str_replace("public://","",$sql_img['uri']);
+	 $image_uri = file_build_uri($filename);
+	 echo image_style_url('thumb_review_detail', $image_uri);
+	// echo image_style_url('extra_large_for_review', $image_uri);
+	 echo image_style_url('large_review', $image_uri);
+	 echo image_style_url('thumb_compare_car', $image_uri);
+	 echo image_style_url('medium_medium', $image_uri);
+	 $sql_imgline=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_model_line['und'][0]['fid']));
+	 $filenameline=str_replace("public://","",$sql_imgline['uri']);
+	 $image_uriline = file_build_uri($filenameline);
+	 echo image_style_url('thumb_review_detail', $image_uriline);
+	// echo image_style_url('extra_large_for_review', $image_uri);
+	 echo image_style_url('large_review', $image_uriline);
+	 echo image_style_url('thumb_compare_car', $image_uriline);
+	 echo image_style_url('medium_medium', $image_uriline);
+	 echo image_style_url('big_image', $image_uri);
+	}
+	else if($node->type=='safety')
+ 	{
+ 	 $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_safety_image['und'][0]['fid']));
+	 $filename=str_replace("public://","",$sql_img['uri']);
+	 $image_uri = file_build_uri($filename);
+	 echo image_style_url('thumb_review_detail', $image_uri);
+	 echo image_style_url('medium_medium', $image_uri);
+	 echo image_style_url('extra_large_for_review', $image_uri);
+	  echo image_style_url('big_image', $image_uri);
+	}
+ }
+
+
+
+
+
+function create_imagecopy_node_update($node) 
+{
+	if($node->type=='gallery_images')
+	{
+	if(count($node->field_gallery_exterior['und'])>0)
+		{
+		for($j=0;$j<=count($node->field_gallery_exterior);$j++)
+			{
+ $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_gallery_exterior['und'][$j]['fid']));
+ $filename=str_replace("public://","",$sql_img['uri']);
+ $image_uri = file_build_uri($filename);
+ echo image_style_url('compare_multiple_car', $image_uri);
+ echo image_style_url('large_review', $image_uri);
+ echo image_style_url('medium_large', $image_uri);
+ echo image_style_url('medium_medium', $image_uri);
+ echo image_style_url('thumb_compare_car', $image_uri);
+ echo image_style_url('thumb_review_detail', $image_uri);
+ echo image_style_url('medium_medium', $image_uri);
+ echo image_style_url('extra_large_for_review', $image_uri);
+ echo image_style_url('big_image', $image_uri);
+ 		    }
+ 	   }
+ 	  if(count($node->field_gallery_interior['und'])>0)
+		{
+		for($j=0;$j<=count($node->field_gallery_interior);$j++)
+			{
+ $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_gallery_interior['und'][$j]['fid']));
+ $filename=str_replace("public://","",$sql_img['uri']);
+ $image_uri = file_build_uri($filename);
+ echo image_style_url('compare_multiple_car', $image_uri);
+ echo image_style_url('large_review', $image_uri);
+ echo image_style_url('medium_large', $image_uri);
+ echo image_style_url('medium_medium', $image_uri);
+ echo image_style_url('thumb_compare_car', $image_uri);
+ echo image_style_url('thumb_review_detail', $image_uri);
+ echo image_style_url('medium_medium', $image_uri);
+ echo image_style_url('extra_large_for_review', $image_uri);
+ echo image_style_url('big_image', $image_uri);
+           }
+ 	   }
+ 	  if(count($node->field_gallery_engine['und'])>0)
+		{
+		for($j=0;$j<=count($node->field_gallery_engine);$j++)
+			{
+ $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_gallery_engine['und'][$j]['fid']));
+ $filename=str_replace("public://","",$sql_img['uri']);
+ $image_uri = file_build_uri($filename);
+ echo image_style_url('compare_multiple_car', $image_uri);
+ echo image_style_url('large_review', $image_uri);
+ echo image_style_url('medium_large', $image_uri);
+ echo image_style_url('medium_medium', $image_uri);
+ echo image_style_url('thumb_compare_car', $image_uri);
+ echo image_style_url('thumb_review_detail', $image_uri);
+ echo image_style_url('medium_medium', $image_uri);
+ echo image_style_url('extra_large_for_review', $image_uri);
+ echo image_style_url('big_image', $image_uri);
+           }
+ 	   }
+ 	  if(count($node->field_gallery_smaller['und'])>0)
+		{
+		for($j=0;$j<=count($node->field_gallery_smaller);$j++)
+			{
+ $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_gallery_smaller['und'][$j]['fid']));
+ $filename=str_replace("public://","",$sql_img['uri']);
+ $image_uri = file_build_uri($filename);
+ echo image_style_url('compare_multiple_car', $image_uri);
+ echo image_style_url('large_review', $image_uri);
+ echo image_style_url('medium_large', $image_uri);
+ echo image_style_url('medium_medium', $image_uri);
+ echo image_style_url('thumb_compare_car', $image_uri);
+ echo image_style_url('thumb_review_detail', $image_uri);
+ echo image_style_url('medium_medium', $image_uri);
+ echo image_style_url('extra_large_for_review', $image_uri);
+ echo image_style_url('big_image', $image_uri);
+           }
+ 	   }
+ 		
+ 	}
+ else if($node->type=='news')
+ 	{
+ 		if($node->field_news_media_type['und'][0]['value']=='Images')
+ 			{
+			for($j=0;$j<=count($node->field_news_images);$j++)
+				{
+	 $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_news_images['und'][$j]['fid']));
+	 $filename=str_replace("public://","",$sql_img['uri']);
+	 $image_uri = file_build_uri($filename);
+	// echo image_style_url('large_review', $image_uri);
+	 echo image_style_url('extra_large_for_review', $image_uri);
+	 echo image_style_url('medium_medium', $image_uri);
+	 echo image_style_url('big_image', $image_uri);
+	 
+				}
+			
+			}
+			else
+			{
+				if(count($node->field_news_list_image['und'])>0)
+					{
+				for($j=0;$j<=count($node->field_news_list_image);$j++)
+						{
+				$sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_news_list_image['und'][$j]['fid']));
+				$filename=str_replace("public://","",$sql_img['uri']);
+	 			$image_uri = file_build_uri($filename);
+				echo image_style_url('medium_medium', $image_uri);		
+				echo image_style_url('big_image', $image_uri);
+						}
+					}
+			
+			}
+ 	}
+  else if($node->type=='hot_threads')
+ 	{
+	 $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_ht_image['und'][0]['fid']));
+	 $filename=str_replace("public://","",$sql_img['uri']);
+	 $image_uri = file_build_uri($filename);
+	 echo image_style_url('thumb_review_detail', $image_uri);
+	 echo image_style_url('medium_medium', $image_uri);
+	}
+  else if($node->type=='forum_reviews')
+ 	{
+	 $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_forum_review_image['und'][0]['fid']));
+	 $filename=str_replace("public://","",$sql_img['uri']);
+	 $image_uri = file_build_uri($filename);
+	 echo image_style_url('thumb_review_detail', $image_uri);
+	 echo image_style_url('medium_medium', $image_uri);
+	}
+ else if($node->type=='advice')
+ 	{
+ 	if($node->field_advice_media_type['und'][0]['value']=='Image')
+ 			{
+	 $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_advice_images['und'][0]['fid']));
+	 $filename=str_replace("public://","",$sql_img['uri']);
+	 $image_uri = file_build_uri($filename);
+	 echo image_style_url('thumb_review_detail', $image_uri);
+	 echo image_style_url('medium_medium', $image_uri);
+	 echo image_style_url('large_review', $image_uri);
+	 echo image_style_url('extra_large_for_review', $image_uri);
+	 echo image_style_url('big_image', $image_uri);
+				}
+			else
+			{
+				if(count($node->field_advice_optional_image['und'])>0)
+					{
+				$sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_advice_optional_image['und'][0]['fid']));
+				$filename=str_replace("public://","",$sql_img['uri']);
+	 			$image_uri = file_build_uri($filename);
+				echo image_style_url('medium_medium', $image_uri);	
+				echo image_style_url('thumb_review_detail', $image_uri);	
+				echo image_style_url('large_review', $image_uri);
+				echo image_style_url('extra_large_for_review', $image_uri);
+				echo image_style_url('big_image', $image_uri);
+					}
+			
+			}
+	}
+	else if($node->type=='tech_stuff)')
+ 	{
+ 	 $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_tech_stuff_image['und'][0]['fid']));
+	 $filename=str_replace("public://","",$sql_img['uri']);
+	 $image_uri = file_build_uri($filename);
+	 echo image_style_url('thumb_review_detail', $image_uri);
+	 echo image_style_url('medium_medium', $image_uri);
+	 echo image_style_url('extra_large_for_review', $image_uri);
+	 echo image_style_url('big_image', $image_uri);
+	}
+	else if($node->type=='model)')
+ 	{
+ 	 $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_model_dashboard['und'][0]['fid']));
+	 $filename=str_replace("public://","",$sql_img['uri']);
+	 $image_uri = file_build_uri($filename);
+	 echo image_style_url('thumb_review_detail', $image_uri);
+	// echo image_style_url('extra_large_for_review', $image_uri);
+	 echo image_style_url('large_review', $image_uri);
+	 echo image_style_url('thumb_compare_car', $image_uri);
+	 echo image_style_url('medium_medium', $image_uri);
+	 $sql_imgline=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_model_line['und'][0]['fid']));
+	 $filenameline=str_replace("public://","",$sql_imgline['uri']);
+	 $image_uriline = file_build_uri($filenameline);
+	 echo image_style_url('thumb_review_detail', $image_uriline);
+	// echo image_style_url('extra_large_for_review', $image_uri);
+	 echo image_style_url('large_review', $image_uriline);
+	 echo image_style_url('thumb_compare_car', $image_uriline);
+	 echo image_style_url('medium_medium', $image_uriline);
+	 echo image_style_url('big_image', $image_uri);
+	}
+	else if($node->type=='safety')
+ 	{
+ 	 $sql_img=@mysql_fetch_array(mysql_query("select uri from file_managed  where fid=".$node->field_safety_image['und'][0]['fid']));
+	 $filename=str_replace("public://","",$sql_img['uri']);
+	 $image_uri = file_build_uri($filename);
+	 echo image_style_url('thumb_review_detail', $image_uri);
+	 echo image_style_url('medium_medium', $image_uri);
+	 echo image_style_url('extra_large_for_review', $image_uri);
+	  echo image_style_url('big_image', $image_uri);
+	}
+}
+

@@ -1,0 +1,91 @@
+a span {
+	cursor:pointer;
+}
+#highlights li {
+	height:11px !important;
+	line-height:11px;
+}
+.vintageBtn li {
+	height:10px !important;
+	line-height:10px;
+}
+.buttonSmall span {
+	display:inline;
+	cursor:pointer;
+}
+.reviewCompare {
+	height:68px;
+	overflow:hidden;
+}
+.reviewCompare li {
+	height:48px;
+	overflow:hidden;
+}
+.TeamUL  {
+	width:315px;
+}
+.teamContainer .marL25 {
+	margin-left:20px;
+}
+.tableHeadWrap {
+	position:absolute;
+}
+.pFixHead {
+	position:absolute;
+	border:1px solid blue;
+}
+.buySellCity, .disBlk, #sidePage, .hotTrends, .hotTrends, .selectCarBox   {
+	position:relative;
+	clear:both;
+	}
+.OtherSections li a, .OtherSections li a.active {
+	width:86%;
+}
+.InnerPagination .pagination {
+	right: 0;
+	margin: 0;
+	text-align: right;
+	position: static;
+	float: right;
+	display: inline;
+}
+.InnerPagination .pagination li {
+	left: 0;
+	position: static;
+	display: inline;
+}
+.addCarForm .close {
+	top: 10px;
+	}
+#footer .marL40 {
+	margin-left: 20px;
+}
+#footer .w160, #footer .w160 ul   {
+	width: 190px;
+}
+#footer .w100, #footer .w100 ul   {
+	width: 90px;
+}
+.roadSafety {
+	height: 90px;
+	padding-bottom: 0;
+}
+.siteStats {
+	margin-top:26px;
+}
+.userOnline {
+	background: transparent url(../images/cta/user-online/user-online-bg-10.png) no-repeat left top;
+	height:160px !important;
+}
+.gloablSearchBtn, .directoryList li, .stayUpdated a, #navigation li.home a, .buySellInner ul li, .or, .zoomIt, .relatedNews li, .buySellCity li, .buySellCity li, .buySellCity ul.price li, .blackBullet li, .shareCTA a.print, .shareCTA a.email, .shareCTA a.facebook, .shareCTA a.twitter, a.close, .remove, .launcOn, .priceTable h4, .VitalList h3.launch, .VitalList h3.price, .VitalList h3.fuel, .photoShare li a, .price h2, .tickMarkIcon, .jcarousel-skin-tango .jcarousel-next-horizontal, .jcarousel-skin-tango .jcarousel-prev-horizontal, .infoBox span, .threadsList li a, .safetyBlock li, .topArrow, #nextBanner, #gallery .controls b, .revoewOr {
+	background-image: url(../images/sprites/icons-8.png);
+	background-repeat: no-repeat;
+}
+	
+#navigation a:hover, .button, .btnLeft, .btnRight, .buttonSmall, .discussBtn, .addBtn, .reviewBtn, .reviewBtn span,
+#navigation a span:hover, #navigation a:hover span, .button span, .btnLeft span, .btnRight span, .buttonSmall span, .discussBtn span,
+.addBtn span, #navigation li.home a:hover {
+	background-image: url(../images/sprites/buttons-8.png);
+	background-repeat: no-repeat;
+	}
+	

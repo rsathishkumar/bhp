@@ -1,0 +1,6 @@
+name = "Multi image module"
+description = "Custom module for multi image upload."
+core = "7.x"
+package = "Team BHP"
+
+version = "7.x-1.0"

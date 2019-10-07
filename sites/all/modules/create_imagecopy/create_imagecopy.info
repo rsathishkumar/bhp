@@ -1,0 +1,6 @@
+name = "Team BHP"
+description = "Custom module for create image with multiple sizes for Team BHP site."
+core = "7.x"
+package = "Team BHP"
+
+version = "7.x-1.0"

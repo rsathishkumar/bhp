@@ -1,0 +1,224 @@
+/* @group review */
+.redBg{
+	background:url(../themes/mobilebhp/images/redBg.jpg) repeat-x top center;
+}
+.w930{
+	width: 930px;
+}
+.srchCars h3 {
+    padding-left: 20px;
+}
+/* @end */
+
+/* @group review */
+.w100{
+	width: 100px;
+}
+.w190{
+	width: 190px;
+}
+.w175{
+	width: 175px;
+}
+.recently_launched span{
+	font-size: 13px;
+	font-weight: normal;
+}
+.resultReview{
+	padding: 5px;
+	border-bottom: 1px solid #d5d0b4;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.borderRight{
+	border-right: 1px solid #d7d7d7;
+}
+.borderNone{
+	border-bottom: none;
+}
+
+.resultReview p{
+	color: #929292;
+	font-family: Tahoma;
+	font-size: 14px;
+	font-weight: normal;
+	padding-bottom: 5px;
+	padding-left: 20px;
+}
+.resultReview tr:hover {
+	background-color: #eeeded;
+	cursor: pointer;
+}
+
+.resultReview tr:hover .viewVariant {
+	border-color: #eeeded;
+	} 
+.resultReview td{
+	vertical-align: top;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.owners h4{
+	font-family: Tahoma;
+	font-size: 16px;
+	font-weight: bold;
+	padding-bottom: 5px;	
+}
+.owners span{
+	font-size: 16px;
+	font-weight: normal;
+	display: block;
+}
+.owners li{
+	color: #666666;
+}
+.reviewBg{
+	background-color: #e5e5e5;
+}
+.sortBox{
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight: normal;
+	padding: 0 0 5px 10px;
+}
+.sortBox a{
+	color: #929292;
+}
+.borderBottom{
+	border-bottom: 1px solid #cccccc;
+}
+.borderTop{
+	border-top: 1px solid #cccccc;
+	padding-top: 3px;
+}
+.resultReviewBtn{
+	visibility: hidden;
+}
+.resultReview tr:hover .resultReviewBtn{
+	visibility: visible;
+}
+.padR10{
+	padding-right: 10px;
+}
+.topArrow{
+	background-position: right -2554px;
+	padding: 0 15px 0 0;
+
+}
+/* @end */
+
+/* @group buy sell cars */
+.buyCarsBg {
+	background:url(../themes/mobilebhp/images/buyBg.png) repeat-x top left;
+}
+.buyCarsBottom {
+	background:url(../themes/mobilebhp/images/buyBgBottom.png) repeat-x left bottom;
+	height: 39px;
+}
+.buyCars h3 {
+	color: #FFFFFF;
+    font-size: 24px;
+    font-family: Tahoma;
+}
+.buyCars p {
+	color: #FFFFFF;
+	font-size: 12px;
+	padding-left: 20px;
+	width: 100px;
+	float: left;
+}
+.w80{
+	width: 80px;
+	
+}
+.buyCars img{
+	display: block;
+}
+/* @end */
+
+/* @group 404 error */
+.errorBg {
+	background:url(../themes/mobilebhp/images/errorBg.png) no-repeat;
+	margin: 0 auto;
+    padding: 90px 2px 0px 200px;
+    width: 500px;
+    margin-top: 100px;
+    margin-bottom:170px;
+}
+.errorText h3{
+	font-family: Tahoma;
+	font-size: 24px;
+	font-weight: bold;
+}
+.errorText p {
+	color: #898989;
+	font-size: 18px;
+	font-family: Tahoma;
+}
+.errorText a {
+	color: #f89a21;
+	font-size: 16px;
+	text-decoration: underline;
+}
+.visitText {
+	color: #939393;
+	font-size: 13px;
+	font-weight: normal;
+}
+.visitText a{
+	color: #f89a21;
+	font-size: 13px;
+	text-decoration: underline;
+}
+/* @end */
+
+/* @group site map */
+.siteMap{
+	padding: 20px;
+}
+.siteMap h4 {
+	color: #da0000;
+	font-family: Tahoma;
+	font-size: 18px;
+	font-weight: normal;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	
+}
+.borderSite{
+	border-top: 1px solid #d5d0b4;
+}
+.forumSite {
+	float: left;
+	width: 295px;
+}
+.forumSite h1{
+	font-size: 16px;
+	font-weight: bold;
+	padding-bottom: 5px;
+}
+.forumSite li{
+	font-size: 16px;
+	color: #333333;
+	font-weight: normal;
+}
+
+/* @end */
+
+/* @group Glossary */
+.glossary a{
+	color: #929292;
+	font-family:Tahoma;
+	font-size: 18px;
+	font-weight: normal;
+	padding-right: 5px;
+}
+.glossary span{
+	color: #333333;
+	font-weight: normal;
+	font-size: 16px;
+}
+descripptionFlow span{
+	
+}
+/* @end */

@@ -1,0 +1,395 @@
+.homePage #container{
+	padding:5px;
+}
+.homePage #leftColumn {
+	width:620px;
+}
+
+.homePage #sidebar {
+	padding:0;
+	width:300px;
+}
+.marR12 {
+	margin-right:12px;
+}
+.disBlock {
+	display:block;
+}
+.w420 {
+	width:420px;
+}
+
+/* @group page banners Styles */	
+.homeBanner { position:relative; height:230px; margin-bottom:10px; z-index:0; }
+
+#highlights .bannerTabs { position: absolute; left:0; bottom:0; background:url(../images/home/travelListBg.png) repeat left top; width: 100%; z-index: 999; }
+#highlights ul { float:left; height:38px; z-index: 100;}
+#highlights li { 
+		float: left; 
+		height:12px; 
+		_height:10px;
+		width: 12px; 
+		background-color: #305aa6; 
+		margin:13px 0 0 10px; 
+		_margin-top:3px;
+		padding:1px;
+		cursor: pointer;
+}
+	
+#highlights ul li.active { 
+	-moz-border-radius:2px;
+	border:1px solid #999; 
+	padding:0;
+}	
+.banner {
+	height:230px;
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+}
+.homeBanner1 { background:url(../images/home/banner1.jpg) no-repeat left top; }
+.homeBanner2 { background:url(../images/home/banner2.jpg) no-repeat left top; }
+.homeBanner3 { background:url(../images/home/banner3.jpg) no-repeat left top; }
+.homeBanner4 { background:url(../images/home/banner4.jpg) no-repeat left top; }
+
+#nextBanner {
+	width:8px;
+	height:10px;
+	margin:15px 10px 0 0;
+	background-position:left -2480px;
+}
+
+#bannerTitle {
+	font:bold 24px/28px Tahoma;
+	color:#fe8c05;
+	margin:4px 7px 0 0;
+}
+
+/* @end */
+
+/* @group Search Classifieds Style */
+.searchClassi {
+	margin-bottom:10px;
+}
+.searchClassi h4 {
+	font:bold 24px/40px Tahoma;
+	background:#A81926 url(../images/red-tabbg.png) repeat-x left top;
+	color:#fff;
+	padding:0 15px;
+}
+.searchContent {
+	border:1px solid #000;
+	padding:5px 10px 10px 15px;
+	background:#3f3535 url(../images/home/classiBg.png) repeat-x left bottom;
+}
+.searchContent p {
+	font:normal 12px/16px Tahoma;
+	color:#c3c1c1;
+	margin-bottom:20px;
+}
+.searchContent dl {
+	margin:0 0 15px 25px;
+}
+.searchContent dt {
+	font:normal 14px/18px Tahoma;
+	color:#fff;
+	display:block;
+	margin-bottom:2px;
+}
+.searchContent select {
+	font:normal 12px/16px Tahoma;
+	color:#333;
+	width:210px;
+}
+.find {
+	background-position:left top;
+	float:right;
+	width:69px;
+	height:25px;
+	cursor:pointer;
+}
+/* @end */
+
+/* @group homeTab Style */
+.homeTab {
+	margin-bottom:10px;
+}
+.homeTab .titleLi {
+	font:bold 24px/28px Tahoma;
+	color:#fff;
+	border-right:1px solid #8b1519;
+	margin-top:-3px;
+	padding:6px 20px;
+}
+.homeTab .secondLi {
+	border-left:1px solid #d15458;
+	padding-left:15px;
+}
+.homeTab .tab_container {
+	padding:10px;
+}
+.homeCarList li {
+	float:left;
+}
+.homeCarList img {
+	float:left;
+	margin-right:10px;
+}
+.homeCarList a {
+	display:block;
+	width:179px;
+	padding:10px;
+	font:normal 13px/15px Tahoma;
+	color:#333;
+}
+.homeCarList a:hover {
+	background-color:#e5e5e5;
+}
+/* @end */
+
+/* @group homeReviewList Style */
+.homeReview h4 {
+	background:url(../images/home/reviewBg.png) repeat-x left top;
+}
+.homeReview .title {
+	float:left;
+	font:bold 24px/40px Tahoma;
+	color:#fff;
+	padding:0 20px;
+	border-right:1px solid #242222;
+}
+.homeReview .options {
+	float:left;
+	padding:10px 20px;
+	border-left:1px solid #545454;
+}
+.homeReview select {
+	font:normal 12px/16px Tahoma;
+	color:#3d3d3f;
+	width:120px;
+}
+.reviewContent {
+	border:1px solid #cbcaca;
+	border-top: none;
+	background-color: #fff;
+	padding:10px;
+}
+.reviewList li {
+	float:left;
+	width:175px;
+	height:130px;
+	border:1px solid #cbcaca;
+	overflow:hidden;
+	margin:10px 12px 10px 10px;
+	position:relative;
+}
+.reviewList span {
+	position:absolute;
+	bottom:0;
+	left:0;
+	padding:0 7px;
+	font:normal 14px/22px Tahoma;
+	color:#fff;
+}
+.reviewList b {
+	position:absolute;
+	bottom:0;
+	left:0;
+	background-color:#000;
+	opacity:0.6;
+	width:100%;
+	height:21px;
+}
+/* @end */
+
+/* @group homeThreads Style */
+.homeThreads h4 {
+	font:bold 24px/40px Tahoma;
+	color:#fff;
+	background:url(../images/cta/hot-trends/hot-trendsbg.png) repeat-x left top;
+	padding:0 15px;
+}
+.threadsList {
+	border:1px solid #cbcaca;
+	border-top: none;
+	background-color: #fff;
+	padding:0 2px 10px 2px;
+}
+.threadsList ul {
+	margin-bottom:13px;
+}
+.threadsList li {
+	background:url(../images/home/threadsLiBg.png) repeat-x left bottom;
+	display:block;
+	padding:9px 5px 10px 15px;
+}
+.threadsList li a {
+	font:normal 14px/18px Tahoma;
+	color:#333;
+	display:block;
+	background-position:right -2397px;
+}
+/* @end */
+
+/* @group whatCar Style */
+.whatCar {
+	margin-bottom:10px;
+}
+.whatCar li {
+	float:left;
+}
+.whatCar li:first-child {
+	width:234px;
+	text-align:center;
+	font:bold 24px/28px Tahoma;
+	color:#fff;
+	background:url(../images/home/whatCarBg.png) no-repeat left top;
+	padding:18px 0;
+}
+.whatCar li:last-child { 
+	padding:10px 20px 10px 21px;
+	width:655px;
+	background-color:#292929;
+	margin-top:1px;
+}
+.whatCar h5 {	
+	font:normal 16px/20px Tahoma;
+	color:#fffefe;
+	margin-bottom:4px;
+}
+.whatCar p {	
+	font:normal 13px/17px Tahoma;
+	color:#9f9f9f;
+	letter-spacing:0.7px;
+}
+/* @end */
+
+/* @group homeTravel Style */
+.homeTravel {
+	height:248px;
+	border:1px solid #ccc;
+	padding:10px 20px;
+	background:url(../images/home/travelBg.jpg) no-repeat left top;
+	margin-bottom:10px;
+}
+.homeTravel h4 {
+	font:bold 24px/28px Tahoma;
+	color:#383737;
+}
+.homeTravel p {
+	font:normal 14px/18px Tahoma;
+	color:#383737;
+	width:210px;
+}
+.travelList {
+	float:right;
+	margin-top:30px;
+	padding:5px 15px;
+	background:url(../images/home/travelListBg.png) repeat;
+}
+.travelList li {
+	border-bottom:1px solid #5a5959;
+	padding:7px 5px;
+}
+.travelList li:last-child {
+	border:none;
+}
+.travelList a {
+	font:normal 14px/18px Tahoma;
+	color:#fff;
+}
+/* @end */
+
+/* @group primBlock Style */
+.primBlock h4 {
+	padding:0 1px 1px 20px;
+	border:1px solid #cbcaca;
+	background:url(../images/home/primBlockRedBg.png) no-repeat 1px top;
+}
+.primBlock h4 span {
+	display:block;
+	font:bold 18px/22px Tahoma;
+	color:#000;
+	padding:8px 0;
+	background:url(../images/home/primBlockHeadBg.png) repeat-x left top;
+}
+.primBlockPad {
+	padding:10px;
+	border:1px solid #cbcaca;
+	border-top:none;
+	background-color:#fff;
+}
+.normalList li {
+	border-bottom:1px solid #d5d0b4;
+	margin-bottom:8px;
+	padding:0 7px 8px 7px;
+}
+.normalList a {
+	font:normal 14px/18px Tahoma;
+	color:#333;
+}
+/* @end */
+
+/* @group safetyBlock Style */
+.safetyBlock {
+	background:#fece0e url(../images/home/safetyBg.png) repeat-x left top;
+	border:1px solid #c29315;
+	padding:79px 0 10px;
+}
+.safetyBlock ul {
+	border-top:1px solid #d6af0b;
+	border-bottom:1px solid #ffff00;
+	margin-bottom:10px;
+}	
+.safetyBlock li {
+	border-bottom:1px solid #d6af0b;
+	border-top:1px solid #ffff00;
+	padding:3px 0 4px  25px;
+	background-position:10px -2473px;
+}
+.safetyBlock li a {
+	font:normal 14px/18px Tahoma;
+	color:#000;
+}
+/* @end */
+
+/* @group vintageCars Style */
+.vintageCars {
+	padding:10px;
+	border:1px solid #cbcaca;
+	background-color:#fff;
+	margin-bottom:10px;
+}
+.vintageCars  h4 {
+	font:bold 24px/28px Tahoma;
+	color:#3f3f3f;
+	margin-bottom:10px;
+}
+.vintageCars .picBox {
+	width:280px;
+	height:175px;
+	margin-bottom:10px;
+	overflow:hidden;
+}
+.vintageBtn li {
+	float:left;
+	width:12px;
+	height:12px;
+	border:1px solid #cbc8c8;
+	margin-left:10px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-khtml-border-radius: 8px;
+	border-radius: 8px;
+	cursor:pointer;
+}
+.vintageBtn li.active {
+	background-color:#fff;
+	-moz-box-shadow:inset 0 0 8px #b81d27;
+	-webkit-box-shadow:inset 0 0 8px #b81d27;
+	box-shadow:inset 0 0 8px #b81d27;
+	border:1px solid #b81d27;
+
+}
+/* @end */

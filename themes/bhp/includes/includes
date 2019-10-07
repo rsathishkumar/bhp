@@ -1,0 +1,14 @@
+<div class="roundAll3 cta buySell clearfix">
+	<h3 class="padB5 marL10 marT10">Buy &amp; Sell<br />USED CARS</h3>
+	<div class="buySellInner clearfix">
+		<ul>
+			<li class="hatchback"><a href="#" title="hatchback">Hatchback</a></li>
+			<li class="sedan"><a href="#" title="sedan">Sedan</a></li>
+			<li class="suv"><a href="#" title="suv">SUV, MUV, 4x4</a></li>
+			<li class="luxury"><a href="#" title="luxury">Luxury</a></li>
+			<li class="entertainment last"><a href="#" title="moterbikes">Moterbikes</a></li>
+			<!--<li class="accessories"><a href="#" title="accessories">Accessories</a></li>
+			<li class="entertainment last"><a href="#" title="entertainment">In-Car-Entertainment</a></li>-->
+		</ul>
+	</div>
+</div><!-- Buy and Sell CTA -->

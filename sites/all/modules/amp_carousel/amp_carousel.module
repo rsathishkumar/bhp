@@ -1,0 +1,303 @@
+<?php
+
+/**
+ * @file
+ * AMP Carousel Drupal 7 module.
+ */
+
+/**
+ * Implements hook_views_api().
+ */
+function amp_carousel_views_api() {
+  return array(
+    'api' => 3,
+  );
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function amp_carousel_field_formatter_info() {
+  $info['amp_carousel'] = array(
+    'label' => t('AMP carousel'),
+    'field types' => array('image'),
+    'module' => 'amp_carousel',
+    'settings' => array(
+      'image_style' => 0,
+      'layout' => 'responsive',
+      'type' => 'slides',
+      'autoplay' => 'off',
+      'delay' => '0',
+      'width' => '1024',
+      'height' => '576',
+    ),
+  );
+  return $info;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function amp_carousel_theme() {
+  return array(
+    'amp_carousel' => array(
+      'variables' => array(
+        'image_style' => 0,
+        'layout' => 'responsive',
+        'type' => 'slides',
+        'autoplay' => 'off',
+        'delay' => '0',
+        'width' => '1024',
+        'height' => '576',
+        'id' => '',
+        'items' => array(),
+      ),
+    ),
+  );
+}
+
+/**
+ * Theme function.
+ */
+function theme_amp_carousel($vars) {
+  $files = array();
+  foreach ($vars['items'] as $file) {
+    $file_source = $file['uri'];
+    $attributes['src'] = file_create_url($file_source);
+    if ($vars['image_style']) {
+      $file_uri = image_style_path($vars['image_style'], $file_source);
+      $attributes['src'] = file_create_url($file_uri);
+      if (!file_exists($attributes['src'])) {
+        // If the file is missing:
+        // Load the style definition - empty array returned if image_style_load fails.
+        $image_style = image_style_load($vars['image_style']);
+        if (count($image_style)) {
+          // Finally, we can create the styled derivative file.
+          image_style_create_derivative($image_style, $file_source, $file_uri);
+        }
+      }
+    }
+    $file_dimensions = getimagesize($attributes['src']);
+    $attributes['width'] = $file_dimensions[0];
+    $attributes['height'] = $file_dimensions[1];
+    if ($vars['layout'] == 'responsive') {
+      $attributes['layout'] = $vars['layout'];
+    }
+
+    $files[] = '<amp-img' . drupal_attributes($attributes) . '></amp-img>';
+  }
+
+  $output = '';
+  $filecount = count($files);
+
+  if ($filecount > 1) {
+    $output = '<amp-carousel width="' . check_plain($vars['width']) . '" height="' . check_plain($vars['height']) . '" layout="' . $vars['layout'] . '" type="' . $vars['type'] . '"' . ($vars['autoplay'] == 'autoplay' ? 'autoplay' : '') . ' delay="' . $vars['delay'] . '">';
+  }
+
+  // Images:
+  for ($i = 0; $i < $filecount; $i++) {
+    $output .= $files[$i];
+  }
+
+  if ($filecount > 1) {
+    $output .= '</amp-carousel>';
+  }
+
+  return $output;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function amp_carousel_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $ids = entity_extract_ids($entity_type, $entity);
+  $element[0] = array(
+    '#markup' => theme('amp_carousel',
+      array(
+        'image_style' => $display['settings']['image_style'],
+        'layout' => $display['settings']['layout'],
+        'type' => $display['settings']['type'],
+        'autoplay' => $display['settings']['autoplay'],
+        'delay' => $display['settings']['delay'],
+        'width' => $display['settings']['width'],
+        'height' => $display['settings']['height'],
+        'id' => drupal_clean_css_identifier(implode('-', $ids) . '-' . $instance['field_name']),
+        'items' => $items,
+      )
+    ),
+  );
+
+  amp_carousel_load_component_js();
+
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function amp_carousel_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+  $summary = [];
+
+  if (strpos($display['type'], 'amp_carousel') !== FALSE) {
+
+    $summary[] = t('@layout @type with size: @width' . 'px x @height' . 'px', array(
+      '@layout' => $settings['layout'],
+      '@type' => $settings['type'],
+      '@width' => $settings['width'],
+      '@height' => $settings['height'],
+    ));
+
+    $image_styles = image_style_options(FALSE, PASS_THROUGH);
+    // Unset possible 'No defined styles' option.
+    unset($image_styles['']);
+    // Styles could be lost because of enabled/disabled modules that defines
+    // their styles in code.
+    if (isset($image_styles[$settings['image_style']])) {
+      $summary[] = t('Image style: @style', array('@style' => $image_styles[$settings['image_style']]));
+    }
+    else {
+      $summary[] = t('Original image');
+    }
+
+    if ($settings['autoplay'] == 'autoplay') {
+      $summary[] = t('Autoplay: ON');
+      if (isset($settings['delay'])) {
+        $summary[] = t('Delay: @delay', array('@delay' => $settings['delay']));
+      }
+    }
+  }
+
+  return implode('<br />', $summary);
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function amp_carousel_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $settings = $instance['display'][$view_mode]['settings'];
+  $options = array();
+  $element['type'] = array(
+    '#title' => t('Type'),
+    '#type' => 'select',
+    '#options' => array('carousel' => t('carousel'), 'slides' => t('slides')),
+    '#default_value' => $settings['type'],
+  );
+  $element['layout'] = array(
+    '#title' => t('Layout'),
+    '#type' => 'select',
+    '#options' => array('fixed-height' => t('fixed-height'), 'responsive' => t('responsive')),
+    '#default_value' => $settings['layout'],
+  );
+  $element['autoplay'] = array(
+    '#title' => t('Autoplay'),
+    '#type' => 'select',
+    '#options' => array('off' => t('Off'), 'autoplay' => t('On')),
+    '#default_value' => $settings['autoplay'],
+    '#prefix' => '<div id="amp-carousel-autoplay-setting">',
+    '#suffix' => '</div>',
+  );
+  $element['delay'] = array(
+    '#title' => t('Delay'),
+    '#type' => 'textfield',
+    '#default_value' => $settings['delay'],
+    '#states' => array(
+      'invisible' => array(
+        '#amp-carousel-autoplay-setting select' => array('value' => 'off'),
+      ),
+    ),
+  );
+  $element['width'] = array(
+    '#title' => t('Width'),
+    '#type' => 'textfield',
+    '#default_value' => $settings['width'],
+    '#required' => TRUE,
+  );
+  $element['height'] = array(
+    '#title' => t('Height'),
+    '#type' => 'textfield',
+    '#default_value' => $settings['height'],
+    '#required' => TRUE,
+  );
+
+  // Get image styles:
+  $styles = image_styles();
+  $options = array(
+    0 => 'Original image',
+  );
+  foreach ($styles as $key => $value) {
+    $options[$key] = $value['label'];
+  }
+  $element['image_style'] = array(
+    '#title' => t('Image style'),
+    '#type' => 'select',
+    '#options' => $options,
+    '#default_value' => $settings['image_style'],
+  );
+
+  return $element;
+}
+
+/**
+ * Load AMP component JS.
+ *
+ * @see https://amp.dev/documentation/examples/components/amp-carousel/
+ */
+function amp_carousel_load_component_js() {
+  $res = array(
+    '#tag' => 'script',
+    '#attributes' => array(
+      'src' => 'https://cdn.ampproject.org/v0/amp-carousel-0.1.js',
+      'custom-element' => 'amp-carousel',
+      'async' => 'async',
+    ),
+  );
+  drupal_add_html_head($res, 'amp_carousel');
+}
+
+/**
+ * Implements template_preprocess_hook().
+ */
+function template_preprocess_views_view_amp_carousel(&$variables) {
+  amp_carousel_load_component_js();
+}
+
+/**
+ * Implements hook_help().
+ */
+function amp_carousel_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#amp_carousel':
+
+      $filepath = dirname(__FILE__) . '/README.md';
+      if (file_exists($filepath)) {
+        $readme = file_get_contents($filepath);
+      }
+      else {
+        $filepath = dirname(__FILE__) . '/README.txt';
+        if (file_exists($filepath)) {
+          $readme = file_get_contents($filepath);
+        }
+      }
+      if (!isset($readme)) {
+        return NULL;
+      }
+      if (module_exists('markdown')) {
+        $filters = module_invoke('markdown', 'filter_info');
+        $info = $filters['filter_markdown'];
+
+        if (function_exists($info['process callback'])) {
+          $output = $info['process callback']($readme, NULL);
+        }
+        else {
+          $output = '<pre>' . $readme . '</pre>';
+        }
+      }
+      else {
+        $output = '<pre>' . $readme . '</pre>';
+      }
+
+      return $output;
+  }
+}

@@ -1,0 +1,6 @@
+name = "Team BHP insert model title"
+description = "Custom module for the Team BHP site to insert model title"
+core = "7.x"
+package = "Team BHP"
+
+version = "7.x-1.0"
