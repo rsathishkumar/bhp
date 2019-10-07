@@ -560,7 +560,7 @@ $minusdate = date('ymdHi') - date("ymdHi", $querydate);
 					//$res = mysqli_query("select nid from node where type='news' and status= 1 and nid>".$node->nid." limit 1");
 					if($_REQUEST['t']!='')
 						{
-						$res = @mysqli_query("select node.nid as nid from node,field_data_field_news_tags where type='news' and node.nid=field_data_field_news_tags.entity_id and field_data_field_news_tags.field_news_tags_tid='".base64_decode($_REQUEST['t'])."' and node.nid < '".$node->nid."' and node.status=1 group by node.nid order by node.created desc");
+						$res = @mysqli_query($con, "select node.nid as nid from node,field_data_field_news_tags where type='news' and node.nid=field_data_field_news_tags.entity_id and field_data_field_news_tags.field_news_tags_tid='".base64_decode($_REQUEST['t'])."' and node.nid < '".$node->nid."' and node.status=1 group by node.nid order by node.created desc");
 						if(mysqli_num_rows($res)>0)
 							{
 							$nextarticle=mysqli_fetch_array($res);
@@ -571,7 +571,7 @@ $minusdate = date('ymdHi') - date("ymdHi", $querydate);
 						}
 					else if($_REQUEST['model']!='')
 						{
-						 $res =mysqli_query("select node.nid as nid from node, field_data_field_news_category, field_data_field_news_make where type='news' and node.nid=field_data_field_news_category.entity_id and field_data_field_news_make.entity_id=node.nid and field_data_field_news_make.field_news_make_nid='".base64_decode($_REQUEST['model'])."' and node.nid < '".$node->nid."' and node.status=1 order by node.created desc");
+						 $res =mysqli_query($con, "select node.nid as nid from node, field_data_field_news_category, field_data_field_news_make where type='news' and node.nid=field_data_field_news_category.entity_id and field_data_field_news_make.entity_id=node.nid and field_data_field_news_make.field_news_make_nid='".base64_decode($_REQUEST['model'])."' and node.nid < '".$node->nid."' and node.status=1 order by node.created desc");
 					 	 if(mysqli_num_rows($res)>0)
 							{
 							$nextarticle=mysqli_fetch_array($res);
@@ -582,7 +582,7 @@ $minusdate = date('ymdHi') - date("ymdHi", $querydate);
 						}
 					else if($_REQUEST['tag']!='')
 						{
-						 $res =mysqli_query("select node.nid as nid from node, field_data_field_news_cat, field_data_field_news_tags where type='news' and node.nid=field_data_field_news_cat.entity_id and node.nid=field_data_field_news_tags.entity_id and field_data_field_news_cat.field_news_cat_nid='".base64_decode($_REQUEST['tag'])."'  and node.nid < '".$node->nid."' and node.status=1 group by node.nid order by node.created desc");
+						 $res =mysqli_query($con, "select node.nid as nid from node, field_data_field_news_cat, field_data_field_news_tags where type='news' and node.nid=field_data_field_news_cat.entity_id and node.nid=field_data_field_news_tags.entity_id and field_data_field_news_cat.field_news_cat_nid='".base64_decode($_REQUEST['tag'])."'  and node.nid < '".$node->nid."' and node.status=1 group by node.nid order by node.created desc");
 					 	 if(mysqli_num_rows($res)>0)
 							{
 							$nextarticle=mysqli_fetch_array($res);
@@ -593,7 +593,7 @@ $minusdate = date('ymdHi') - date("ymdHi", $querydate);
 						}
 					else if($_REQUEST['tab']!='')
 						{
-						$res =mysqli_query("select node.nid as nid, node.created as created, title, field_news_category_value from node, field_data_field_news_category where type='news' and node.nid=field_data_field_news_category.entity_id and field_data_field_news_category.field_news_category_value like '%%%' and node.nid < '".$node->nid."' and node.status=1 order by node.created desc");
+						$res =mysqli_query($con, "select node.nid as nid, node.created as created, title, field_news_category_value from node, field_data_field_news_category where type='news' and node.nid=field_data_field_news_category.entity_id and field_data_field_news_category.field_news_category_value like '%%%' and node.nid < '".$node->nid."' and node.status=1 order by node.created desc");
 					 	 if(mysqli_num_rows($res)>0)
 							{
 						$nextarticle=mysqli_fetch_array($res);
@@ -604,7 +604,7 @@ $minusdate = date('ymdHi') - date("ymdHi", $querydate);
 						}
 						else
 						{
-					$res = mysqli_query("select nid from node,field_data_field_news_category where node.nid=field_data_field_news_category.entity_id and field_data_field_news_category.field_news_category_value='".$node->field_news_category['und'][0]['value']."' and type='news' and nid < '".$node->nid."' and status= 1 order by created desc limit 1");
+					$res = mysqli_query($con, "select nid from node,field_data_field_news_category where node.nid=field_data_field_news_category.entity_id and field_data_field_news_category.field_news_category_value='".$node->field_news_category['und'][0]['value']."' and type='news' and nid < '".$node->nid."' and status= 1 order by created desc limit 1");
 						if(mysqli_num_rows($res)>0)
 							{
 						$nextarticle=mysqli_fetch_array($res);
