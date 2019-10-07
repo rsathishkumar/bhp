@@ -15,7 +15,7 @@ require_once 'create_imagecopy_config.inc';
 
 function create_imagecopy_init () {
  //$con = mysql_connect("localhost", "pplane_teambhp", "foucault84");
-  	$con = mysqli_connect("localhost", "root", "root",'teambhp_site');
+  	$con = mysqli_connect("localhost", "root", "mete4loW",'teambhp_site');
 //	mysql_select_db("", $con) or die("error in connection:ic_init");
   }
 

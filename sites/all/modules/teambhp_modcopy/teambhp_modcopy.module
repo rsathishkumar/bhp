@@ -5,7 +5,7 @@ require_once 'teambhp_modcopy.features.inc';
 //require_once 'teambhp_mod_features.inc';
 
 function teambhp_modcopy_init () {
-  $con = mysqli_connect("localhost", "root", "root");
+  $con = mysqli_connect("localhost", "root", "mete4loW");
 //  mysql_select_db("teambhp_site", $con) or die("error in connection");
  }
 

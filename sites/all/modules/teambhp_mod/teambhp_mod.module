@@ -10,7 +10,7 @@ function teambhp_mod_init ()
   drupal_add_js(drupal_get_path('module', 'teambhp_mod') . '/js/teambhp_mod.js');
   drupal_add_js(drupal_get_path('module', 'multiimage_mod') . '/js/common.js');
   drupal_add_js('test()');
-  $con = mysqli_connect("localhost", "root", "root",'teambhp_site');
+  $con = mysqli_connect("localhost", "root", "mete4loW",'teambhp_site');
  // mysql_select_db("teambhp_site", $con) or die("error in connection");
   $res = mysqli_query("select distinct(title) from node where type='news_category' and status='1'", 1);
   $cat = "";
