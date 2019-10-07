@@ -7,7 +7,7 @@ require_once 'teambhp_update_config.inc';
 
 function teambhp_update_init () 
   {
- $con = mysqli_connect("localhost", "root", "mete4loW");
+ $con = mysqli_connect("localhost", "root", "mete4loW", 'teambhp_site');
  // mysql_select_db("teambhp_site", $con) or die("error in connection");
   }
 
