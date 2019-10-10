@@ -38,7 +38,7 @@ function bmp_ampsubtheme_preprocess_page(&$vars) {
     }
   }
 
-  $prefix_amp_sidebar = '<amp-sidebar id="sidebar" layout="nodisplay" side="right"><ul class="amp-sidebar-menu">';
+  $prefix_amp_sidebar = '<amp-sidebar id="sidebar" layout="nodisplay" side="left" data-close-button-aria-label="X"><ul class="amp-sidebar-menu">';
   $suffix_amp_sidebar = '</ul></amp-sidebar>';
   $amp_sidebar = $prefix_amp_sidebar . $amp_all_links  . $suffix_amp_sidebar;
   $vars['amp_sidebar'] = $amp_sidebar;

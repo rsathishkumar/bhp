@@ -92,7 +92,7 @@
 
 <?php if ($display_submitted): ?>
 <footer class="submitted">
-    <?php print $time_ago; ?> by <?php print $name ;?>
+    <?php print $time_ago; ?> by <a href="/aboutus/team"><?php print $name ;?></a>
 </footer>
 <?php endif; ?>
 

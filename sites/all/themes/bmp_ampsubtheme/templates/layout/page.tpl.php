@@ -83,7 +83,7 @@
           <?php if ($logo): ?>
             <a class="site-branding__logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
               <amp-img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>"
-                height="80px" width = "255px"
+                height="40px" width = "125px"
                 layout="responsive"></amp-img>
             </a>
           <?php endif; ?>
@@ -107,7 +107,13 @@
             <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
             <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
             <?php print render($page['content']); ?>
-          </div></div> <!-- /.section, /#content -->
+          </div>
+          <amp-ad width=618 height=80
+                  type="doubleclick"
+                  data-slot="/1063105/belownews">
+          </amp-ad>
+
+</div> <!-- /.section, /#content -->
 
       </main></div> <!-- /#main, /#main-wrapper -->
 
