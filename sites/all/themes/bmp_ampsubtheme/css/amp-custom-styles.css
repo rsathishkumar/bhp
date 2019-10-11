@@ -112,7 +112,9 @@ h1,
 
 h2,
 .heading-b {
-  font-size: 1rem;
+  color: #000;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 h3,
@@ -552,4 +554,56 @@ ul.amp-sidebar-menu {
 .field-name-field-news-content {
     padding-top: 2.3rem;
     color: #3B3B3B;
+}
+
+.field-name-field-news-content {
+  padding-top: 2.3rem;
+  color: #3B3B3B;
+}
+
+#block-views-related-news-block {
+  background: #FFF;
+  padding: 15px;
+}
+
+#block-views-related-news-block .views-row {
+  background-position: left -888px;
+  padding: 5px 0px 5px 20px;
+  border-bottom: 1px solid #d5d0b4;
+  background-image: url('https://www.team-bhp.com/themes/bhp/images/sprites/icons.png');
+  background-repeat: no-repeat;
+}
+
+#block-views-related-news-block .views-row a {
+  font-size: 16px;
+  color: #666;
+}
+
+#block-views-related-news-block .views-row a:hover {
+  text-decoration: underline;
+  border-bottom: none;
+}
+
+.field-name-field-news-tags .field-item {
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.field-name-field-news-tags .field-item a {
+  display: block;
+  padding: 1px 6px;
+  border: solid #e4e3e3 1px;
+  font-size: 12px;
+  color: #333;
+  background-color: #eeebeb;
+}
+
+.field-name-field-news-tags .field-item a:hover {
+  background-color: #d5d2d2;
+}
+
+.field-name-field-news-tags .field-label {
+    float: left;
+    font-size: .9rem;
 }
